@@ -139,7 +139,7 @@ console.dir(p1);
 console.log(p1.age.toString());
 ```
 
-##### 다시 들여다보기
+#### 다시 들여다보기
 우리는 앞서 상위 `prototype`에 참조된다고했다. 그렇다면 두가지 의문이 생긴다.
 
 1. 만약 프로토타입체인을 통해서 못찾으면?
@@ -187,7 +187,7 @@ foo {a: 5, greet: ƒ}
       __proto__: Object
 ```
 자신의 객체의 속성을 추가한것임을 알 수 있다.
-##### 그럼 어떻게 상위 `PrototypeObject` 의 속성을 변경하는가?
+#### 그럼 어떻게 상위 `PrototypeObject` 의 속성을 변경하는가?
 
 
 `PrototypeObject.prototype` 속성을 이용해서 수정하거나  
