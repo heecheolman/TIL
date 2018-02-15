@@ -71,6 +71,20 @@ const err = new obj();
 //TypeError: obj is not a constructor
 ```
 
+`new` 연산자를 사용하면 내부에서 일어나는 일을 보자
+
+```javascript
+function foo(){
+  // this = {};
+  // this.__proto__ = foo.prototype;
+
+  // 함수가 Object, Array, Function 중 하나를 반환하지않으면
+  // this를 새로 만들어진 객체로 바인드하여 반환
+
+  // return this;
+}
+```
+
 ##### 2. 해당함수의 PrototypeObject 생성 및 연결
 자신이 생성될 당시의 `PrototypeObject` 객체를 cloning(복제) 하여 만든다.  
 자신의 분신이 생기는것이다.  
@@ -208,8 +222,8 @@ obj.__proto__.greet = function(){ console.log(`Bye ${this.a}`); };
 [https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67](https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67)  
 [http://rhio.tistory.com/236](http://rhio.tistory.com/236)  
 [http://insanehong.kr/post/javascript-prototype/](http://insanehong.kr/post/javascript-prototype/)  
-[http://www.nextree.co.kr/p7323/](http://www.nextree.co.kr/p7323/)
-
+[http://www.nextree.co.kr/p7323/](http://www.nextree.co.kr/p7323/)  
+[https://gist.github.com/crispynap/0e693a305eb2acdc87be979c3ed95bee](https://gist.github.com/crispynap/0e693a305eb2acdc87be979c3ed95bee)
 
 ### 아무말 대잔치
 
