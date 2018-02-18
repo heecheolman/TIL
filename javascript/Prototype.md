@@ -52,10 +52,9 @@ console.log(typeof obj); // object
 모든 함수 객체는 `prototype` 이라는 속성을 가지고 있다.  
 `prototype` 은 원형이라는 뜻이라고했다.
 
-`.prototype` 은 자기 자신을 생성하게 한 원형 객체를 가리킨다.
+`.prototype` 은 자신의 원형 객체를 가리킨다.
 ```javascript
 function func(){}
-const obj = new func();
 ```
 위의 코드에서
 ###### func.prototype 은 func의 원형객체를 가리킴
@@ -75,7 +74,8 @@ const err = new obj();
 
 ```javascript
 function foo(){
-  // this = {};
+  // obj = {};
+  // 이때 obj를 this 값으로 봄
   // this.__proto__ = foo.prototype;
 
   // 함수가 Object, Array, Function 중 하나를 반환하지않으면
