@@ -25,7 +25,7 @@ options: {
 }
 ```
 > qeury 프로퍼티는 webpack1 이고 webpack2로 넘어가면서 options로 바뀌었다고 한다. *options 권장*  
-또한  query나 options가 필요없는 로더는 use 사용 필요한 로더는 loaders 사용
+또한  query나 options가 필요없는 로더는 use 사용, 필요한 로더는 loaders 사용
 
 ## [babel-polyfill](https://babeljs.io/docs/usage/polyfill/)
 es6를 지원하지않는 웹브라우저를 위해 지원해주는 모듈
