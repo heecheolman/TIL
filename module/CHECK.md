@@ -15,7 +15,7 @@
 * [__dirname 과 . 의 차이가 무엇인가?](#f)
 
 ------
-## <a name="entry">entry는 Array? Object?</a>
+## <a name="a"> entry는 Array? Object?</a>
 
 `entry` 프로퍼티에는 Array 를 써야하나요 Object를 써야하나요?
 
