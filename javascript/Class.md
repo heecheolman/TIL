@@ -302,7 +302,6 @@ Car.sMethod(); // staticMethod
 앞서 말했듯이 `static`은 인스턴스에서 호출할 수 없다.  
 `car` 는 인스턴스로 만들어진 객체이고 `super.sMethod()` 는 정적메서드이기때문에 프로토타입체인에의해 인스턴스에서 호출이 불가능하다.
 
-
 ##### 참고문서
 [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super)  
 [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/static](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/static)  
