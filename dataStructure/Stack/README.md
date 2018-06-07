@@ -3,6 +3,7 @@
 스택은 시간순서에 따라 자료가 쌓여서 가장 마지막에 삽입된 자료가 가장 먼저 삭제되는 **후입선출 (LIFO : Last-In-First-Out)** 구조이다.
 
 ![이미지 1](https://www.tutorialspoint.com/data_structures_algorithms/images/stack_representation.jpg)
+
 출처 : [https://www.tutorialspoint.com/data_structures_algorithms/stack_algorithm.htm](https://www.tutorialspoint.com/data_structures_algorithms/stack_algorithm.htm)
 
 
