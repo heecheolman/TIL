@@ -25,11 +25,11 @@ typedef struct CircularQueue {
 
 
 #### 삽입
-함수 : `enQueue()`
+함수 : `enQueue()`  
 rear = (rear + 1) % QUEUE_SIZE;
 
 #### 삭제
-함수 : `deQueue()`
+함수 : `deQueue()`  
 front = (front + 1) % QUEUE_SIZE;
 
 
