@@ -100,6 +100,15 @@ int main(void) {
     printf("삭제 >> "); deQueue(circularQueue); printQueue(circularQueue);
     
     
+    // 선형 큐와는 달리 나머지연산자를 이용하므로 인덱스의 첫번째부터 다시 삽입된다. 정확히말해선 덮어씌워진다.
+    printf("삽입 1 >> "); enQueue(circularQueue, 1); printQueue(circularQueue);
+    printf("삽입 2 >> "); enQueue(circularQueue, 2); printQueue(circularQueue);
+    printf("삽입 3 >> "); enQueue(circularQueue, 3); printQueue(circularQueue);
+    
+    printf("삭제 >> "); deQueue(circularQueue); printQueue(circularQueue);
+    printf("삭제 >> "); deQueue(circularQueue); printQueue(circularQueue);
+    printf("삭제 >> "); deQueue(circularQueue); printQueue(circularQueue);
+    
     
     /* 출력결과
      
@@ -111,6 +120,12 @@ int main(void) {
      peek Data -->  4
      삭제 >> Circular Queue [1 6 ]
      삭제 >> Circular Queue [6 ]
+     삭제 >> Circular Queue []
+     삽입 1 >> Circular Queue [1 ]
+     삽입 2 >> Circular Queue [1 2 ]
+     삽입 3 >> Circular Queue [1 2 3 ]
+     삭제 >> Circular Queue [2 3 ]
+     삭제 >> Circular Queue [3 ]
      삭제 >> Circular Queue []
      
     */
