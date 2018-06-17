@@ -28,6 +28,8 @@ typedef struct {
 **구현 예)**
 
 ![이미지](http://interactivepython.org/runestone/static/pythonds/_images/basicdeque.png)
+
+
 출처 : [http://interactivepython.org/runestone/static/pythonds/BasicDS/WhatIsaDeque.html](http://interactivepython.org/runestone/static/pythonds/BasicDS/WhatIsaDeque.html)
 
 #### 초기화
