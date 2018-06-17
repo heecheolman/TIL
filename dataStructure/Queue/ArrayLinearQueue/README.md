@@ -20,7 +20,7 @@ rear 를 증가시킨 후 증가된 rear 에 데이터 삽입
 
 #### 삭제
 함수 : `deQueue()`  
-front 가 가리키는 배열원소를 반환하고 front 값 증가
+front 를 증가시킨 후 front에 위치한 데이터 반환
 
 
 

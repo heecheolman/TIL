@@ -10,7 +10,7 @@
 #include <stdlib.h>
 
 // 큐 사이즈 10
-#define QUEUE_SIZE 10
+#define QUEUE_SIZE 4
 
 typedef int element;
 typedef struct ArrayQueue {
@@ -50,8 +50,8 @@ element deQueue(ArrayQueue * aq) {
     if(isEmpty(aq)) {
         exit(1);
     }
-    // aq->front 를 반환한 후 증가시키는 후위증감연산자
-    return aq->queue[(aq->front)++];
+    // aq->front 를 증가 후 반환시킴
+    return aq->queue[++(aq->front)];
 }
 
 void del(ArrayQueue * aq) {
@@ -89,6 +89,9 @@ int main(void) {
     printf("삭제 >> "); deQueue(Queue); printQueue(Queue);
     printf("삭제 >> "); deQueue(Queue); printQueue(Queue);
     
+    // 배열이 비어있음에도 불구하고 삽입 불가.
+//    printf("삽입 1 >> "); enQueue(Queue, 1); printQueue(Queue);
+//    printf("삽입 1 >> "); enQueue(Queue, 1); printQueue(Queue);
     
     /* 출력결과
      
@@ -101,6 +104,5 @@ int main(void) {
      삭제 >>  Queue [1 6 ]
      삭제 >>  Queue [6 ]
      삭제 >>  Queue []
-     
     */
 }
