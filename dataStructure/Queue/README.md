@@ -32,10 +32,9 @@
 [알고리즘]
 1. 큐가 가득 차 있는지 확인한다.
 2. 큐가 가득차 있다면 에러메세지 출력 후 종료.
-3. 가득차 있지 않다면 데이터 front 가 위치한 데이터에 접근한다.
-4. front 를 증가시켜 다음 element 에 위치한다.
+3. 가득차 있지 않다면 데이터 front 를 증가시켜 데이터에 접근한다.
+4. element 를 반환한다.
 ```
-![이미지](https://www.tutorialspoint.com/data_structures_algorithms/images/queue_dequeue_diagram.jpg)
 
 #### peek()
 큐의 front 에 위치한 데이터를 단순 반환한다.
