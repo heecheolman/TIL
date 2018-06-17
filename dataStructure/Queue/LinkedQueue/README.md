@@ -25,8 +25,9 @@ typedef struct {
 
 **구현 예)**
 
-![이미지](http://www.cs.grinnell.edu/~walker/courses/201.sp05/labs/queues1.gif)  
-출처 : [http://www.cs.grinnell.edu/~walker/courses/201.sp05/labs/lab-queues.shtml](http://www.cs.grinnell.edu/~walker/courses/201.sp05/labs/lab-queues.shtml)
+![이미지](http://1.bp.blogspot.com/-Cb5cQnnbwvk/ViKhgiDXP2I/AAAAAAAAA8o/LcII9oEehsY/s1600/linkedlist.gif)  
+
+출처 : [http://learnshareimprove.blogspot.com/2015/10/programming-cpp-program-to-implement.html](http://learnshareimprove.blogspot.com/2015/10/programming-cpp-program-to-implement.html)
 
 #### 초기화
 함수 : `createQueue()`
