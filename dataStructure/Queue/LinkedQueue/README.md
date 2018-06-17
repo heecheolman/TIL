@@ -77,4 +77,4 @@ typedef struct {
 연결을 위해 link 라는 포인터변수를 노드마다 사용한다.
 
 
-[덱 배우기]()
+[덱 배우기](https://github.com/heecheolman/TIL/tree/master/dataStructure/Queue/Dequeue)
