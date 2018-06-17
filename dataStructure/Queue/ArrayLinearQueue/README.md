@@ -30,4 +30,5 @@ front 를 증가시킨 후 front에 위치한 데이터 반환
 ### 단점
 큐를 삽입하고 삭제하는 작업을 반복하면 배열이 비어있음에도 불구하고  
 큐가 가득 차있다고 인식  
-**원형 큐로 해결가능**
+
+[원형큐로 해결](https://github.com/heecheolman/TIL/tree/master/dataStructure/Queue/ArrayCircularQueue)
