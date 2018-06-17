@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// 큐 사이즈 10
+// 큐 사이즈 4
 #define QUEUE_SIZE 4
 
 typedef int element;
