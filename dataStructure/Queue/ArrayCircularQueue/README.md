@@ -35,3 +35,9 @@ front = (front + 1) % QUEUE_SIZE;
 
 ### 장점
 삽입 삭제 연산을 수행해도 선형큐와 달리 첫번째 인덱스로 되돌아온다.
+
+### 단점
+여전히 사용 크기가 제한되어 큐의 길이를 마음대로 조절할 수 없다.  
+큐 안에 데이터가 없어도 고정된 크기이므로 메모리가 낭비된다
+
+[연결 큐로 해결하기](https://github.com/heecheolman/TIL/tree/master/dataStructure/Queue/LinkedQueue)
