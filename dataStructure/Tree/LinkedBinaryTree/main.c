@@ -69,6 +69,16 @@ int main(void) {
     postOrder(n1); printf("\n");
     
     
+    /* 트리모양
+     
+     
+            -
+        *        +
+     A     B   C    D
+     
+     
+     */
+    
     /* 출력결과
      
      - * A B + C D
