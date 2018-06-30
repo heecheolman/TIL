@@ -12,6 +12,7 @@
 
 ## MVC(Model View Controller)
 ![이미지1](https://magi82.github.io/images/2017-2-24-android-mvc-mvp-mvvm/mvc.png)
+
 출처 : [마기의 개발블로그](https://magi82.github.io/android-mvc-mvp-mvvm/)
 
 ##### Controller
@@ -34,6 +35,7 @@
 
 ## MVP(Model View Presenter)
 ![이미지2](http://startandroid.ru/images/stories/blog/493/x010.png.pagespeed.ic.QC26kF2Y20.png)
+
 출처 : [TechYourChacne](https://www.techyourchance.com/mvp-mvc-android-1/)
 
 MVC에서 파생된 패턴으로 MVC패턴의 의존적인 문제를 해결하고자 나온 패턴이다.  
