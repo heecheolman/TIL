@@ -2,7 +2,7 @@
 웹 브라우저의 역사와 웹 프레임워크의 등장 배경을 작성
 
 
-### 초기 웹
+## 초기 웹
 초기 웹 사용자는 `NetScape` 와 `IE` 둘 중에 선택을 할 수 있었는데, `NetScape` 의 시장 점유율이 86%에 달했다. 하지만 1996년도에 `Microsoft` 가 `IE` 브라우저를 운영 체제와 통합을 해버려서 `IE` 의 점유율이 75% 까지 상승했다. 이로 인해 `NetScape` 는 쇠퇴했고 `IE` 가 거의 독점을 하는 추세였다.
 
 상업적으로 제품 개발을 할 수 없게 된 `NetScape` 는 오픈소스를 통해 `Mozilla` 를 만들었다. (`Mozilla` 는 `NetScape` 회원들이 1998년에 설립한 free software community)  
@@ -20,13 +20,13 @@
 
 딱 봐도 작성유지가 힘들다.
 
-### JSP
+## JSP
 
 1990년대에 등장한 `JAVA` 의 열풍으로 `JSP(Java Server Pages)`언어를 이용해 동적인 웹 페이지를 만들었는데 여기에 문제가 있었다.  
 `JSP`는 사용자의 요청이 있으면 서버에서 전체 html을 만드는 방식이었는데 이는 네트워크 속도가 아무리 빨라도 비효율적이었다.  
 이러한 문제를 해결하기 위해 `Ajax` 가 등장했다.
 
-### Ajax
+## Ajax
 `Ajax` 란 Asynchronous Javascript And XML 의 약자로 비동기적 자바스크립트와 XML 이며, 자바스크립트를 통한 비동기적 통신이다.  
 
 가장 두드러지는 특징은 페이지 전체를 리프레쉬 하지않고 수행되는 `비동기성` 이다.  
@@ -40,13 +40,13 @@
 이후에 여러가지 웹 프레임워크가 등장한다.  
 크게 1세대, 2세대, 3세대로 나누었다.
 
-### 1세대 프레임워크 AngularJS, Backbone.js
+## 1세대 프레임워크 AngularJS, Backbone.js
 `SPA`를 작성하기위한 프레임워크 등장.
 `AngularJS`, `Backbone.js` 이라는 1세대 웹 프레임워크가 등장하게되는데
 특징은 `양방향 데이터 흐름` 과 `MVC` 형태를 갖추고있는 `MVC 및 MVVM 프레임워크` 이다.
 
 
-### 2세대 프레임워크 React
+## 2세대 프레임워크 React
 2세대 프레임워크인 `React` 는 1세대 프레임워크들과는 다르게 철저하게 `View` 에만 집중된다.  
 DOM 을 효과적으로 처리하기 위해 `단방향 데이터 흐름`, `Virtual DOM` 의 특징을 갖는다.
 
@@ -65,7 +65,7 @@ DOM 을 효과적으로 처리하기 위해 `단방향 데이터 흐름`, `Virtu
 
 [참고영상 DOM vs Virtual DOM](https://www.youtube.com/watch?v=BYbgopx44vo)
 
-### 3세대 프레임워크 Vue.js
+## 3세대 프레임워크 Vue.js
 `Vue.js` 와 `React` 는 유사하지만 다른데, 링크를 참조한다  
 [Vue.js 와 React 차이](https://kr.vuejs.org/v2/guide/comparison.html)
 
