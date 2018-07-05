@@ -19,7 +19,7 @@
 
 
 ## 목차
-### MVC, MVP, MVVM 패턴
+### [MVC, MVP, MVVM 패턴](https://github.com/heecheolman/TIL/blob/master/designPattern/MVC_MVP_MVVM/mvc_mvp_mvvm.md)
 ### 생성 패턴 (Creational Pattern)
 * #### 추상팩토리 (Abstract Factory)
 * #### 빌더 (Builder)
