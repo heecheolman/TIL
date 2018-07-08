@@ -1,0 +1,92 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.flex-center-sort {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+.calc-body {
+    width: 300px;
+    height: 420px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #000;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.view-box {
+    width: 100%;
+    height: 70px;
+}
+
+.view-area {
+    line-height: 70px;
+    padding-right: 30px;
+    text-align: right;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.button-area-wrap {
+    width: 100%;
+    height: 350px;
+}
+
+.button-body-wrap {
+    width: 280px;;
+    height: 100%;
+}
+
+.zeroButton{
+    width: 120px;
+    height: 50px;
+}
+
+.topButton {
+    color: #000;
+    background-color: #ccc;
+}
+
+.oprButton {
+    color: #fff;
+    background-color: #f98000;
+}
+
+.numButton {
+    color: #fff;
+    background-color: #76797a;
+}
+
+button {
+    margin: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background: #949494;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
