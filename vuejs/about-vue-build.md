@@ -139,6 +139,58 @@ Node 위에 Unix 쉘 명령을 이식할 수 있는 모듈
 * #### [`node-notifier`](https://github.com/mikaelbr/node-notifier)
 Node 를 이용해 시스템알람을 만들어주는 모듈
 
+* #### [`autoprefixer`](https://github.com/postcss/autoprefixer)
+-webkit-, -ms- 등의 prefix 없이 css 스타일 지정을 도와주는 모듈
+
+* #### [`babel-helper-vue-jsx-merge-props`](https://github.com/vuejs/babel-helper-vue-jsx-merge-props/blob/master/index.js)
+jsx 의 props 들을 merge 해주는 모듈
+
+* #### [`babel-plugin-syntax-jsx`](https://www.npmjs.com/package/babel-plugin-syntax-jsx)
+jsx 문법을 사용가능하게 해줌
+
+
+* #### [`babel-plugin-transform-runtime `](https://babeljs.io/docs/en/babel-plugin-transform-runtime.html)
+babel 기반에서 polyfill 을 추가하는 모듈
+
+* #### [`babel-plugin-transform-vue-jsx`](https://github.com/vuejs/babel-plugin-transform-vue-jsx)
+vue 의 jsx 문법을 babel 로 전환해주는 모듈
+
+* #### [`copy-webpack-plugin`](https://github.com/webpack-contrib/copy-webpack-plugin)
+파일이나 폴더를 build 폴더로 복사해주는 모듈
+
+* #### [`eslint-friendly-formatter`](https://github.com/royriojas/eslint-friendly-formatter)
+SublimeText, iTerm2의 클릭하여 파일열기 기능에대해 익숙한 eslint 제공
+
+* #### [`eslint-plugin-vue`](https://github.com/vuejs/eslint-plugin-vue)
+vuejs 의 코딩규칙을 정의해주는 모듈
+
+* #### [`extract-text-webpack-plugin`](https://www.npmjs.com/package/extract-text-webpack-plugin)
+번들이나 번들의 텍스트를 별도의 파일로 추출해주는 모듈
+
+* #### [`friendly-errors-webpack-plugin`](https://github.com/geowarin/friendly-errors-webpack-plugin)
+웹팩 오류를 알아내고 정리하고, 모아서 우선순위를 지정해주는 모듈
+
+* #### [`optimize-css-assets-webpack-plugin`](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin)
+css 의 assets 들을 최적화해주는 모듈
+
+* #### [`portfinder`](https://www.npmjs.com/package/portfinder)
+빈 포트를 찾아주는 모듈
+
+* #### [`postcss-import`](https://github.com/postcss/postcss-import)
+`@import` 내용을 인라인화 해주는 모듈
+
+* #### [`postcss-url`](https://www.npmjs.com/package/postcss-url)
+`url()` 에서 rebase 합니다. inline 또는 copy할 수 있습니다.
+
+* #### [`vue-style-loader`](https://github.com/vuejs/vue-style-loader)
+`style-loader` 기반으로 만들어진 모듈이며 비슷한 동작을 css 를 문서에 스타일태그로 동적으로 넣는 모듈
+
+
+ * #### [`vue-template-compiler`](https://www.npmjs.com/package/vue-template-compiler)
+ vue template 을 컴파일해주는 모듈이며 기본적으로 생성된다.
+
+ * #### [`webpack-bundle-analyzer`](https://www.npmjs.com/package/webpack-bundle-analyzer)
+모든 번들의 내용에 대해 파일의 크기를 시각화 해주는 모듈
 
 ## 참고문서
 [vuejs-templates DOC](https://vuejs-templates.github.io/webpack/)
