@@ -255,7 +255,7 @@ Caymen 을 생성하는 팩토리, Boxster 를 생성하는 팩토리, Panamera 
 * Car 를 상속받는 Caymen, Boxster, Panamera 는 인터페이스인 createDoor 와 createHood 를 각각의 팩토리에 맞게 구현함
 
 #### Client - `// Client` 주석 다음 줄
-client 는 팩토리에 message 만 전달해 내부가 어떻게 진행되는지 알 수 없고, 알 필요가 없다.
+* client 는 팩토리에 message 만 전달해 내부가 어떻게 진행되는지 알 수 없고, 알 필요가 없다.
 
 
 ## 관련패턴
