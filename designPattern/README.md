@@ -121,15 +121,14 @@
 ![이미지](https://realzero0.github.io/assets/img/gof_types.png)  
 출처 : [디자인패턴 정리 - realzero0](https://realzero0.github.io/study/2017/06/12/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC.html)
 
-이 그림을 토대로 다시 요약하자면 다음과 같습니다.
+**생성(Creational) "클래스" 패턴** 은 객체를 생성하는 책임의 일부를 서브클래스가 담당하도록 넘김, 그러나  
+**생성 "객체" 패턴** 은 이를 다른 객체에게 위임  
 
+**구조(Structural) "클래스" 패턴** 은 상속을 이용해서 클래스를 복합  
+**구조 "객체" 패턴** 은 객체를 합성하는 방법을 정의  
 
-||  <center>생성</center> |  <center>구조</center> |  <center>행동</center> |
-|:--------|:--------:|--------:|
-|**클래스** | <center>객체를 생성하는 책임의 일부를  서브클래스가 담당하도록 넘김</center> | <center>상속을 이용해서 클래스를 복합함</center> | <center>상속을 이용해서 알고리즘과 제어 흐름을 기술</center> |
-|**객체** | <center>다른 객체에게 위임</center> | <center>객체를 합성하는 방법을 정의 </center> | <center>하나의 작업을 수행하기 위해 객체 집합이 어떻게 협력하는지를 기술</center> |
-
-
+**행동(Behavioral) "클래스" 패턴** 은 상속을 이용해서 알고리즘과 제어 흐름을 기술  
+**행동 "객체" 패턴** 은 하나의 작업을 수행하기 위해 객체 집합이 어떻게 협력하는지를 기술
 
 ## 목차
 ### [MVC, MVP, MVVM 패턴](https://github.com/heecheolman/TIL/blob/master/designPattern/MVC_MVP_MVVM/mvc_mvp_mvvm.md)
