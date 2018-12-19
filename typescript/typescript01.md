@@ -1,4 +1,4 @@
-<div style="width: 80px; height: auto;">![](https://pbs.twimg.com/profile_images/743155381661143040/bynNY5dJ_400x400.jpg)
+<div style="width: 80px; height: auto;">![이미지](https://pbs.twimg.com/profile_images/743155381661143040/bynNY5dJ_400x400.jpg)
 </div>
 
 # Typescript
