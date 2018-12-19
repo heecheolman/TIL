@@ -38,3 +38,9 @@ console.log(plusOne("1")); // 11
 
 핵심이 되는 이유들을 우선적으로 적었다.
 이제 본격적으로 타입스크립트를 시작해보자.
+
+
+
+## 참고 문헌
+* [타입스크립트 공식 사이트](https://www.typescriptlang.org/index.html)
+* [타입스크립트 소개와 개발환경 구축 - PoiemaWeb](https://poiemaweb.com/typescript-introduction)
