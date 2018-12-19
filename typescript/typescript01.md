@@ -1,5 +1,10 @@
-<div style="width: 80px; height: auto;">![이미지](https://pbs.twimg.com/profile_images/743155381661143040/bynNY5dJ_400x400.jpg)
+<div align=center>
+
+<img src="https://pbs.twimg.com/profile_images/743155381661143040/bynNY5dJ_400x400.jpg" width="80" height="80">
+
 </div>
+
+
 
 # Typescript
 동적타입언어인 자바스크립트에서는 타입에러를 만나는경우가 많은데 타입스크립트를 이용하여 컴파일단계에서 미리 타입체크를 하여 타입오류를 최소화 할 수 있고, 클래스기반 언어에 익숙한 개발자들에게 좀 더 친숙하게 다가갈 수 있기에 공부를 시작한다.
