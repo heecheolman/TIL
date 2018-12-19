@@ -44,7 +44,9 @@ console.log(plusOne("1")); // 11
 핵심이 되는 이유들을 우선적으로 적었다.
 이제 본격적으로 타입스크립트를 시작해보자.
 
+### [타입스크립트 플레이그라운드](https://github.com/heecheolman/typescript-playground)
 
+> [Jbee 님의 Typescript Playground](https://jaeyeophan.github.io/2017/12/06/TS-TypeScript-Playground/) 를 참고하여 만들었습니다.
 
 ## 참고 문헌
 * [타입스크립트 공식 사이트](https://www.typescriptlang.org/index.html)
