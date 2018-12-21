@@ -16,7 +16,7 @@
 * [Enum](#Enum)
 * [Any](#Any)
 * [Void](#Void)
-* [Null, Undefined](#Null,-Undefined)
+* [Null과 Undefined](#Null과-Undefined)
 * [Never](#Never)
 * [참고문헌](#참고문헌)
 
@@ -232,7 +232,7 @@ unusable = 1; // Error!
 //  TS2322: Type '1' is not assignable to type 'void'.
 ```
 
-### Null, Undefined
+### Null과 Undefined
 각각 null은 `null` undefined 는 `undefined` 값을 갖습니다.
 ```ts
 // TS
