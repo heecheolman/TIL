@@ -22,7 +22,7 @@
 * [Indexable 타입](#indexable-타입)
   * [Indexable 타입 예제](#indexable-타입-예제)
   * [자바스크립트 색인의 동작방식](#자바스크립트-색인의-동작방식)
-  * [Indexable 사용법](#Indexable 사용법)
+  * [Indexable 사용법](#indexable-사용법)
   * [주의해야할 점](#주의해야할-점)
   * [유니온 타입을 이용한 Index Signature](#유니온-타입을-이용한-index-signature)
   * [제한된 리터럴문자열 셋](#제한된-리터럴문자열-셋)
