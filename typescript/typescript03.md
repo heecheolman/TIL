@@ -32,6 +32,7 @@
 * [클래스 타입](#클래스-타입)
 * [확장 인터페이스](#확장-인터페이스)
 * [Hybrid 타입](#hybrid-타입)
+* [참고문헌](#참고문헌)
 
 ---
 
@@ -149,7 +150,7 @@ newKeyElements = keyElements as string[];
 
 newKeyElements.push('e');
 ```
-push, 인덱스 접근 후 할당, 새로운 string 배열인 temp 에 할당같은 것들이 전부 불가능하지만 *Type Assertion* 을 이용하면 가능합니다.
+push, 인덱스 접근 후 할당, 새로운 string 배열인 temp 에 할당같은 것들이 전부 불가능하지만 *Type Assertion* 을 이용하면 가능합니다.
 
 ---
 
@@ -252,7 +253,7 @@ Object.keys(obj).forEach(key => console.log(obj[key]));
 ```text
  TS7017: Element implicitly has an 'any' type because type '{ a: string; b: string; }' has no index signature.
 ```
-`index signature` 가 없다는 에러메세지가 보입니다. 이유인 즉슨, 프로퍼티에 접근할 때 어떤 타입인지 확인할 수 없어 암묵적으로 any 타입을 사용하기 때문입니다.
+`index signature` 가 없다는 에러메세지가 보입니다. 이유인 즉슨, 프로퍼티에 접근할 때 어떤 타입인지 확인할 수 없어 암묵적으로 any 타입을 사용하기 때문입니다.
 
 > 이는 tsconfig 의 `"noImplicitAny": true` 이기 때문에 발생하는 에러입니다.  
 noImplicitAny 의 default 는 true 입니다.
