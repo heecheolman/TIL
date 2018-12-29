@@ -41,7 +41,7 @@ var num = 10;
 ```
 
 ### String
-작은따옴표('') 또는 큰따옴표("") 로 감싸 표현할 수 있습니다. [Template Literal](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals) 을 이용하려면 백틱(\`\`) 으로 감싸면 됩니다.
+작은따옴표('') 또는 큰따옴표("") 로 감싸 표현할 수 있습니다. [Template Literal](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals) 을 이용하려면 백틱(\`\`) 으로 감싸면 됩니다.
 
 ```ts
 // TS
@@ -56,8 +56,8 @@ var greet = "Hello My name is " + myName;
 ### Array
 배열을 표현하는 방식은 두가지가 존재합니다.
 
-1. type[]
-2. Array<type>
+1. `type[]`
+2. `Array<type>`
 
 ```ts
 // TS
