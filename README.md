@@ -6,6 +6,13 @@ heecheolman 이 새로 배운 것을 정리해서 commit 합니다. [Vallista TI
 
 - **필수** [공부 섹션] 제일 처음에 해줍니다. 만약에 javascript 를 공부했다면 [javascript]
 
+---
+
+#### 2019년 목표 [추가 예정]
+* 1일 1커밋 실천해 github 잔디밭 만들기
+* 주간회고 작성
+
+
 ## 라이센스
  © 2018 heecheolman, inc. Distributed under the [Creative Commons Attribution License](https://creativecommons.org/licenses/by/3.0/).
 Names and logos for heecheolman are trademarks of heecheolman, inc.
