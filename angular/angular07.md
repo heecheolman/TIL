@@ -38,7 +38,7 @@ export class ChildComponent {
 * [콘텐트 프로젝션](#콘텐트-프로젝션)
   * [싱글 프로젝션](#싱글-프로젝션)
   * [멀티 프로젝션](#멀티-프로젝션)
-* [`@ContentChild`, `@ContentChildren`](#contentchild,-contentchildren)
+* [`@ContentChild`, `@ContentChildren`](#contentchild-contentchildren)
 
 ## `@ViewChild`
 `@ViewChild` 는 탐색 조건에 해당되는 1개의 요소를 갖습니다.
