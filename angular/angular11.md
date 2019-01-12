@@ -7,7 +7,7 @@
 
 ## 📝 목차
 * [LifeCycle 이란?](#lifecycle-이란)
-* [메서드 훅](#a메서드-훅)
+* [메서드 훅](#메서드-훅)
   * [`ngOnChanges`](#ngonchanges)
   * [`ngOnInit`](#ngoninit)
   * [`ngDoCheck`](#ngdocheck)
