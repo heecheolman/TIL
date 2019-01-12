@@ -17,6 +17,7 @@
 * 프로바이더
   * 클래스 프로바이더
   * 값 프로바이더
+    * 인젝션 토큰
   * 팩토리 프로바이더
 
 ## 서비스란?
@@ -160,11 +161,194 @@ if (Injector.hasToken(req.token)) {
 * 팩토리 프로바이더(Factory provider)
 
 ### 클래스 프로바이더
+providers 프로퍼티는 제공할 인스턴스의 클래스 리스트로 구성된 배열을 값으로 갖습니다.
+```ts
+// 주입할 인스턴스의 클래스 리스트
+providers: [MyService]
+```
+```ts
+providers: [{
+  provide: MyService, // 토큰
+  useClass: MyService // 의존성 인스턴스를 새엇ㅇ할 클래스
+}]
+```
 
+아래의 코드는 위의 코드와 동일합니다. 풀어서 사용했을 뿐입니다.
 
 ### 값 프로바이더
+클래스의 인스턴스가 아닌 문자열이나 객체 리터럴과 같은 값을 의존성 주입하기 위한 설정을 등록합니다.
+예를들어,
+```ts
+export class AppConfig {
+  url: string;
+  port: string;
+}
+
+// 주입할 값
+export const MY_APP_CONFIG: AppConfig = {
+  url: 'https://';
+  port: '5000';
+}
+```
+객체 리터럴을 값으로 갖습니다.
+
+```ts
+import { AppConfig, MY_APP_CONFIG } from 'path';
+
+@Component({
+  ...
+  providers: [
+    {
+      provide: AppConfig,
+      useValue: MY_APP_CONFIG
+    }
+  ]
+})
+export class MyComponent {
+  constructor(
+    private appConfig: AppConfig // 주입
+  ) { }
+}
+```
+
+값이 여러개일수도 있다.
+```ts
+providers: [
+  { provide: 'API_URL', useValue: 'https://...'},
+  { provide: 'API_PORT', useValue: 5000 },
+  { provide: 'API_PROD', useValue: false },
+]
+```
+**클래스 이외의 토큰은 명시적으로 `@Inject` 데코레이터를 선언해야합니다.**
+```ts
+constructor(
+  @Injector('API_URL') public apiUrl: string,
+  @Injector('API_PORT') public apiPort: number,
+  @Injector('API_PROD') public apiProd: boolean,
+) { }
+```
+
+#### 인젝션 토큰
+값 프로바이더를 사용할 경우에는 중복된 토큰이 있을 수 있습니다. 때문에 인젝션 토큰(Injection Token) 을 이용해서 프로바이더에 등록해야합니다.
+
+> 인터페이스를 프로바이더의 토큰으로 등록하려하면 에러가 납니다. 그 이유는 TS 의 interface 는 자바스크립트로 트랜스파일링 되지 않기 때문입니다. 때문에 런타임에러가 나게 됩니다. --> 인젝션 토큰을 사용하자!
+
+인젝션 토큰의 사용법입니다.
+```ts
+import { InjectionToken } from '@angular/core';
+
+// 인터페이스
+export interface AppConfig {
+  url: string;
+  port: string;
+}
+
+// 주입 값
+export const MY_APP_CONFIG: AppConfig = {
+  url: 'https://...',
+  port: '5000',
+};
+
+// 인젝션 토큰 생성
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+
+// 프로바이더
+export const AppConfigProvider = {
+  provide: APP_CONFIG,
+  useValue: MY_APP_CONFIG
+}
+```
+그리고 다음과 같이 주입대상의 토큰을 설정합니다.
+
+```ts
+import { AppConfig, APP_CONFIG, AppConfigProvider } from 'path';
+
+@Component({
+  ...
+  providers: [ AppConfigProvider ]
+})
+export class MyComponent {
+  constructor(
+    @Inject(APP_CONFIG) public appConfig: AppConfig,
+  ) { }
+}
+```
 
 ### 팩토리 프로바이더
+인스턴스를 생성할 때 어떠한 로직을 거쳐야 한다면 팩토리함수를 사용합니다.
+```
+개발모드일시 -> 가상유저
+배포모드일시 -> 실제유저
+```
+
+위의 과정을 거치는 팩토리 프로바이더를 만든다면
+
+```ts
+// 실제 유저를 반환하는 서비스
+@Inectable()
+export class UserService {
+  getUser(): User {
+    return new User('name', 'age');
+  }
+}
+```
+```ts
+// 가상 유저를 반환하는 서비스
+@Inectable()
+export class MockUserService {
+  getUser(): User {
+    return new User('name', 'age');
+  }
+}
+```
+
+**user.service.provider.ts**
+```ts
+import { MockUserService } from 'path';
+import { UserService } from 'path';
+
+// 팩토리 함수 (로직)
+const userServiceFactory = (isDev: boolean) => isDev
+    ? new MockUserService()
+    : new UserService();
+
+// 팩토리 프로바이더
+export const UserServiceProvider = {
+  provide: UserService, // 최종적으로 생성될 인스턴스 타입
+  userFactory: userServiceFactory, // 인스턴스 생성을 담당할 팩토리 함수
+  deps: ['idDev'] // 팩토리 함수에 주입할 값 프로바이더의 토큰
+}
+
+// '팩토리 함수'에 주입할 값의 프로바이더
+export const isDevProvider = {
+  provide: 'isDev',
+  useValue: false
+} // isDev = false;
+```
+
+**deps 프로퍼티에는 팩토리 함수에 주입할 의존성의 토큰을 '배열'로 설정합니다.**
+```ts
+deps: ['idDev', ...] // 팩토리 함수에 주입할 값 프로바이더의 토큰
+```
+
+그리고 팩토리 프로바이더에 의해 주입될 서비스를 사용하는 컴포넌트는 다음과 같이 작성합니다.
+```ts
+import { isDevProvider, UserServiceProvider } from 'path';
+import { UserService } from 'path';
+
+@Component({
+  ...
+  providers: [
+    isDevProvider,
+    UserServiceProvider,
+  ]
+})
+export class MyComponent {
+  constructor(
+    public userService: UserService
+  ) { }
+}
+```
 
 ## 참고문서
 * [Angular Essentials - 이웅모](https://book.naver.com/bookdb/book_detail.nhn?bid=13761643)
