@@ -19,6 +19,8 @@
   * 값 프로바이더
     * 인젝션 토큰
   * 팩토리 프로바이더
+* 선택적 의존성 주입
+* 서비스 중재자 패턴
 
 ## 서비스란?
 컴포넌트의 주요 관심사(뷰를 관리) 이외의 기능은 애플리케이션의 공통 관심사인 경우가 많습니다. 이렇게 애플리케이션의 공통 관심사를 '서비스'라고 합니다. 서비스로 분리하게되면 컴포넌트는 명확히 자신의 관심사에 집중되고 서비스는 서비스대로 분리되어 일관성있는 애플리케이션이 만들어집니다.
@@ -349,6 +351,69 @@ export class MyComponent {
   ) { }
 }
 ```
+
+## 선택적 의존성 주입
+프로바이더를 등록하지않으면 의존성 주입이 되지않아 런타임 에러가 발생하게 됩니다. 의존성 주입이 필수가 아닌경우는 `@Optional` 데코레이터를 사용하여 선택적임을 알려줍니다.
+
+```ts
+@Component({
+  ...
+  // providers: [MyService] -> 선택사항
+})
+class MyComponent {
+  constructor(
+    @Optional public myService: MyServices // @Optional 데코레이터 사용
+  ){ }
+}
+```
+
+## 서비스 중재자 패턴
+부모-자식간 통신이 아닌 비-부모-자식간 통신이 있을 수 있습니다. 기존의 부모-자식간 컴포넌트의 상태 공유 방법은 `@Input` 데코레이터를 통한 프로퍼티 바인딩과 `@Output` 과 `EventEmitter` 를 사용하여 전달하였습니다.
+
+컴포넌트는 트리구조를 이룹니다. 비-부모-자식간 통신을 할 때에는 두개의 컴포넌트의 공통 부모까지 가서 데이터를 공유해야하는데 이렇게 되면 불필요한 작업들(프로퍼티바인딩, 이벤트 등...)이 생기게 됩니다.
+
+두 컴포넌트 사이에 공유되는 데이터를 서비스 내에 위치하게하면 해당 서비스를 통해 공유받고자하는 데이터를 주고받을 수 있습니다. 이를 '서비스 중재자 패턴' 이라고 합니다.
+
+구조를 살펴보자면 다음과 같습니다.
+
+```
+        (데이터 공유)
+        MyService
+         /      \
+        /        \
+       /          \
+      /            \
+Component1     Component2
+```
+MyService 내에는 Component1 과 Component2 가 공유하고싶은 데이터를 갖고있으며 Component1 과 Component2 는 해당 서비스를 주입받아 이용합니다.
+
+```ts
+// myService.service.ts
+@Injectable({
+  providedIn: 'root' // 애플리케이션 전역 서비스임을 알림
+})
+export class MyService {
+  sharedData: any; // 공유될 데이터
+}
+```
+
+```ts
+// Component 1
+export class MyComponent1 {
+  constructor(
+    private myService: MyService
+  )
+  get data() {
+    return this.myService.sharedData;
+  }
+  set data(newData: any) {
+    this.myService.sharedData = newData;
+  }
+}
+```
+
+컴포넌트 1은 `getter/setter` 를 통해 서비스에 존재하는 공유될 데이터를 받아옵니다. 컴포넌트 2도 동일하게 작성하면 서로 데이터는 공유됩니다.
+
 
 ## 참고문서
 * [Angular Essentials - 이웅모](https://book.naver.com/bookdb/book_detail.nhn?bid=13761643)
