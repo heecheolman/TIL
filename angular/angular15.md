@@ -19,7 +19,7 @@
   * [템플릿 기반 폼 유효성 검증](#템플릿-기반-폼-유효성-검증)
   * [템플릿 기반 폼 요약](#템플릿-기반-폼-요약)
 * [리액티브 폼](#리액티브-폼)
-  * [FormGroup클래스](#formgroup클래스)
+  * [FormGroup 클래스](#formgroup-클래스)
     * [formGroup 디렉티브](#formgroup-디렉티브)
     * [FormGroupName 디렉티브](#formgroupname-디렉티브)
   * [FormControl 클래스](#formcontrol-클래스)
