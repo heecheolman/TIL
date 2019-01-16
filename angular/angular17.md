@@ -27,8 +27,22 @@
     * [navigate 메서드](#navigate-메서드)
 * [라우터 상태](#라우터-상태)
   * [라우트 파라미터 전달](#라우트-파라미터-전달)
-  * 라우트 파라미터 취득
-  * 라우트 정적 데이터
+  * [라우트 파라미터 취득](#라우트-파라미터-취득)
+    * [옵저버블로 취득](#옵저버블로-취득)
+    * [특정 시점 취득](#특정-시점-취득)
+  * [라우트 정적 데이터](#라우트-정적-데이터)
+* [자식 라우트](#자식-라우트)
+* [모듈의 분리와 모듈별 라우터 구성](#모듈의-분리와-보듈별-라우터-구성)
+  * [1. 자식 라우팅 모듈 구성](#1-자식-라우팅-모듈-구성)
+  * [2. 자식 모듈에 자식 라우팅 모듈 등록](#2-자식-모듈에-자식-라우팅-모듈-등록)
+  * [3. 루트 라우팅 모듈 구성](#3-루트-라우팅-모듈-구성)
+  * [4. 루트 모듈에 라우팅 모듈들 등록](#4-루트-모듈에-라우팅-모듈들-등록)
+* [라우트 가드](#라우트-가드)
+  * [CanActivate](#canactivate)
+  * [CanActivateChild](#canactivatechild)
+  * [CanLoad](#canload)
+  * [Resolve](#resolve)
+  * [CanDeactivate](#candeactivate)
 
 
 ## SPA란?
@@ -60,7 +74,7 @@ const routes: Routes = [
 ]
 ```
 
-## 위치정책
+## 위치 정책
 SPA 이기 때문에 새로고침을 하면 당연히 첫페이지가 로드됩니다. 그리고 앞서 말했듯이 URL 이 변경되지않아 SEO 문제가 있다고 하였습니다. 그래서 Angular 는 2가지 해결점을 제시합니다.
 
 1. PathLocationStrategy
@@ -305,7 +319,352 @@ this.router.navigate(['/todo', todoId]);
 ```
 
 ### 라우트 파라미터 취득
+`<router-outelet>` 영역에 렌더링된 컴포넌트는 `ActivatedRoute` 객체를 통해 라우터 상태(router state) 에 접근할 수 있습니다.
+
+**[ActivatedRoute 클래스 내부](https://angular.kr/guide/router)**
+```ts
+export declare class ActivatedRoute {
+    /*  */
+    url: Observable<UrlSegment[]>;
+    /*  */
+    params: Observable<Params>;
+    /* 라우팅 규칙에 정의된 라우팅 변수를 map 타입의 Observable로 표현합니다. 맵을 사용하면 라우팅 규칙에 포함된 라우팅 인자를 한 번에 모두 가져올 수도 있습니다. */
+    queryParams: Observable<Params>;
+    fragment: Observable<string>;
+    data: Observable<Data>;
+    outlet: string;
+    component: Type<any> | string | null;
+    snapshot: ActivatedRouteSnapshot;
+    /** The configuration used to match this route */
+    readonly routeConfig: Route | null;
+    /** The root of the router state */
+    readonly root: ActivatedRoute;
+    /** The parent of this route in the router state tree */
+    readonly parent: ActivatedRoute | null;
+    /** The first child of this route in the router state tree */
+    readonly firstChild: ActivatedRoute | null;
+    /** The children of this route in the router state tree */
+    readonly children: ActivatedRoute[];
+    /** The path from the root of the router state tree to this route */
+    readonly pathFromRoot: ActivatedRoute[];
+    readonly paramMap: Observable<ParamMap>;
+    readonly queryParamMap: Observable<ParamMap>;
+    toString(): string;
+}
+```
+|프로퍼티|설명|
+|:--|:--|
+|url|라우팅 경로를 Observable 타입으로 표현합니다. 이 프러파티를 참조하면 라우팅 경로를 구성하는 각 문자열을 배열 형태로 확인할 수 있습니다.|
+|data|라우팅 규칙에 data 객체가 지정되었을 때 이 데이터를 Observable 타입으로 표현합니다. 이 객체에는 라우터 가드에서 처리된 내용이 포함될 수도 있습니다.|
+|paramMap|라우팅 규칙에 정의된 라우팅 변수를 map 타입의 Observable로 표현합니다. 맵을 사용하면 라우팅 규칙에 포함된 라우팅 인자를 한 번에 모두 가져올 수도 있습니다.|
+|queryParamMap|라우팅 규칙에서 접근할 수 있는 모든 쿼리 변수를 map 타입의 Observable로 표현합니다. 맵을 사용하면 라우팅 규칙에 포함된 쿼리 변수를 한 번에 모두 가져올 수도 있습니다.|
+|fragment|모든 라우팅 규칙에 포함된 URL 조각을 Observable 형태로 표현합니다.|
+|outlet|라우팅 영역으로 사용되는 RouterOutlet을 지정할 때 사용합니다. 라우팅 영역에 이름을 지정하지 않으면 primary 가 기본 이름으로 지정됩니다.|
+|routeConfig|현재 사용된 라우팅 규칙의 설정을 표현합니다. 이 객체에는 URL 주소에 대한 정보도 포함됩니다.|
+|parent|현재 라우팅된 것이 자식 라우팅 규칙이라면, 이 라우팅 규칙의 부모 ActivatedRoute를 표현합니다.|
+|firstChild|현재 라우팅 규칙의 자식 라우팅 규칙 중 첫 번째 ActivatedRoute를 표현합니다.|
+|children|현재 활성화된 라우팅 규칙에 있는 모든 자식 라우팅 규칙을 표현합니다.|
+
+
+`ActivatedRoute`를 컴포넌트에 의존성주입(DI) 합니다.
+
+```ts
+...
+import { ActivatedRoute } from '@angluar/router';
+
+...
+export class MyComponent {
+  constructor(
+    private route: ActivatedRoute, // 의존성 주입
+  ){ }
+  ...
+}
+```
+
+#### 옵저버블로 취득
+
+URL 경로가 변경되었지만, 활성화 대상 컴포넌트가 변경되지 않는 경우, 만약 활성화 대상 컴포넌트가 존재하면 다시 생성하지 않고 재사용합니다.  
+**즉, 컴포넌트가 소멸되지 않은 상태에서 라우터 파라미터만 변경된 라우터 상태를 연속으로 수신할 수 있습니다.**
+
+> 예를들어, 사용자의 입력에의해 URL 이 실시간으로 변경될 때 (검색과 같이) 해당 검색어에 필터링된 요소들을 나타낼 때에도 사용합니다. debounceTime 을 적용시키면 비용을 좀 더 최소화할 수 있을것 같습니다.
+
+먼저 `:id` 로 라우트가 구성되어 있을 때 취득 하는 방법은 다음과 같습니다.
+
+```ts
+...
+export class MyComponent implements OnInit {
+  constructor(
+    private route: ActivatedRoute, // 의존성 주입
+  ) { }
+  ngOnInit() {
+    this.route.paramMap
+      .subscribe((params) => this.id = +params.get('id')) // params.get('key') 을 통해 취득
+  }
+}
+```
+
+> **[Unary plus(+)](https://scotch.io/tutorials/javascript-unary-operators-simple-and-useful#toc-unary-plus-)**  
+이 연산자는 number 로 바꾸어줍니다.
+
+#### 특정 시점 취득
+특정 시점의 상태만 조회하는 경우에는 `snapshot` 프로퍼티를 이용합니다. `snapshot` 프로퍼티는 옵저버블로 래핑되지 않은 `paramMap` 객체를 반환합니다.
+```ts
+ngOnInit() {
+  ...
+  this.id = +this.route.snapshot.paramMap.get('id'); // 스냅샷으로 획득
+}
+```
+
 ### 라우트 정적 데이터
+
+Route 인터페이스의 data 프로퍼티는 컴포넌트로 전송할 라우트 정적 데이터(Route static data)로서 애플리케이션 운영에 필요한 데이터를 전달할 때 사용합니다.
+
+예를들어 화면의 타이틀과 사이드바의 표시 여부를 전달하고싶을 때 라우트 구성을 다음과 같이 설정합니다.
+```ts
+const routes: Routes = [
+  {
+    path: 'foo',
+    component: FooComponent,
+    data: { // 데이터 설정
+      title: 'Foo',
+      sidebar: true,
+    },
+  },
+];
+```
+라우트 파라미터와 라우트 정적 데이터를 둘다 받는 방법을 최종적으로 정리하면 다음과 같습니다.
+```ts
+...
+// 라우트 파라미터 취득
+this.id = +this.route.snapshot.paramMap.get('id');
+
+// 라우트 정적 데이터 취득
+this.data = this.route.snapshot.data;
+```
+
+## 자식 라우트
+루트 컴포넌트 뿐 아니라 자식 컴포넌트들도 자신의 자식 컴포넌트들을 위한 `<router-outlet>` 을 가질 수 있습니다.
+```
+AppComponent <router-outlet>
+ ├─ FooComponent <router-outlet>
+ │   ├─ FooChild1Component
+ │   ├─ FooChild2Component
+ │   └─ ...
+ │
+ └─ BarComponent <router-outlet>
+     ├─ BarChild1Component
+     ├─ BarChild2Component
+     └─ ...
+```
+AppComponent 의 `<router-outlet>` 에는 Foo, Bar 가 라우팅에 따라 렌더링되고, 각각의 Foo, Bar 컴포넌트도 자신의 자식들을 렌더링할 `<router-outlet>` 을 갖을 수 있습니다.
+
+이러한 형태의 라우트 구성은 다음과 같습니다.
+```ts
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/foo',
+     pathMatch: 'full'
+  },
+  {
+    path: 'foo',
+    component: FooComponent,
+    children: [ // 자식 라우트 구성
+      { path: ':id', component: FooChild1Component, },
+      { ... },
+    ],
+  },
+  { ... },
+]
+```
+**`children`프로퍼티를 통해 자식 라우트를 구성한것을 확인합니다.**
+
+구성이 끝났으면 자식 라우팅이 필요한 위치에 `<router-outlet></router-outlet>` 을 넣습니다. 그러면 해당 위치에 자식 컴포넌트들이 렌더링됩니다.
+
+## 모듈의 분리와 모듈별 라우터 구성
+
+라우트도 모듈 단위로 구성이 가능합니다. 어떻게 분리를하고 합치는지 알아보겠습니다.
+
+#### 1. 자식 라우팅 모듈 구성
+모듈 단위로 라우팅 구성을 분리할 경우에는 `RouterModule.forChild` 메서드의 인자로 라우트 구성을 등록합니다.
+```ts
+// child-routing.module.ts
+const routes: Routes = [...] // 자식 라우트 구성
+@NgModule({
+  ...
+  imports: [ RouterModule.forChild(routes) ], // forChild 메서드 사용
+})
+```
+
+#### 2. 자식 모듈에 자식 라우팅 모듈 등록
+자식 모듈에 앞서 만들어 놓은 자식 라우팅 모듈을 임포트하여 등록합니다.
+```ts
+// child.module.ts
+import { ChildRoutingModule } from 'path';
+...
+@NgModule({
+  declarations: [ Components... ],
+  imports: [ ChildRoutingModule ] // 라우팅 모듈 등록
+})
+export class ChildModule { }
+```
+
+#### 3. 루트 라우팅 모듈 구성
+루트 라우팅 모듈을 `RouterModule.forRoot` 메서드를 이용해 루트 라우트 구성을 등록합니다.
+```ts
+// app-routing.module.ts
+const routes: Routes = [...] // 루트 라우트 구성
+@NgModule({
+  ...
+  imports: [ RouterModule.forRoot(routes) ], // forRoot 메서드 사용
+})
+```
+
+#### 4. 루트 모듈에 라우팅 모듈들 등록
+마지막으로 루트 모듈에 앞서 작성하였던 라우팅 모듈들을 등록해줍니다.
+
+```ts
+// app.module.ts
+import { ChildRoutingModule } from 'path';
+import { AppRoutingModule } from 'path';
+...
+
+@NgModule({
+  ...
+  imports: [
+    AppRoutingModule,
+    ChildRoutingModule,
+    ...
+  ]
+  ...
+})
+...
+```
+
+## 라우트 가드
+라우트 가드(Route Guard) 는 라우터를 통해 **컴포넌트나 모듈을 활성화할 때 / 컴포넌트에서 빠져나갈 때 권한 등을 체크하여 접근을 제어하는 방법입니다.**  
+예를들어, 메인페이지로 넘어가기 전에 유저가 로그인을 했는지의 여부에 따라 redirect 를 할 수 있습니다.
+
+Angular 는 가드를 위해 [5개의 인터페이스](https://angular.io/api/router#structures)를 제공합니다.
+
+* [CanActivate](https://angular.io/api/router/CanActivate)
+* [CanActivateChild](https://angular.io/api/router/CanActivateChild)
+* [CanLoad](https://angular.io/api/router/CanLoad)
+* [Resolve](https://angular.io/api/router/Resolve)
+* [CanDeactivate](https://angular.io/api/router/CanDeactivate)
+
+### CanActivate
+CanActivate 가드는 해당 뷰(컴포넌트)로의 접근 권한을 제어합니다.
+
+```ts
+// auth.guard.ts
+...
+@Injectable()
+export class AuthGuard implements CanActivate { // CanActivate 인터페이스
+  constructor(
+    private route: Router,
+    private auth: AuthService,
+  ){ }
+
+  CanActivate() {
+    if (!this.auth.isAuthenticated) {
+      // 유효하지 않을 경우
+      this.router.navigate(['login']);
+      return false;
+    }
+    return true;
+  }
+}
+```
+```ts
+// 라우트 구성
+...
+{
+  path: 'user',
+  component: UserComponent,
+  canActivate: [ AuthGuard ] // 접근제한
+}
+```
+라우트 구성에 canActivate 프로퍼티로 가드를 선언합니다. 이렇게 되면 해당 컴포넌트를 활성화 하기 전에 canActivate 에 등록된 가드를 실행시키고 그 결과값에 따라 라우팅 여부를 따집니다.
+
+### CanActivateChild
+
+CanActivateChild 가드는 자식 라우트를 활성화할 수 있는지를 결정합니다. 다시말해서 자식 컴포넌트로의 접근을 제어합니다.
+
+```ts
+// auth.guard.ts
+...
+@Injectable()
+export class AuthChildGuard implements CanActivateChild {
+  CanActivateChild () {
+    ...
+  }
+}
+```
+```ts
+// 라우트 구성
+...
+{
+  path: 'user',
+  component: UserComponent,
+  canActivateChild: [ AuthChildGuard ], // 접근제한
+  children: [ ... ]
+}
+```
+마찬가지로 라우트 구성에 canActivateChild 프로퍼티로 가드를 선언하게되면 자식 컴포넌트를 활성화하기 전에 가드가 실행되고 그 결과값에 따라 라우팅 여부를 따집니다.
+
+### CanLoad
+CanLoad 가드는 모듈이 로드되기 전에 모듈을 활성화할 수 있는지 결정합니다. 애플리케이션을 실행할 때 모든 모듈을 미리 컴파일하지 않고 호출 시점에 컴파일하는 지연로딩(lazy loading) 을 사용하는 경우에 CanLoad 가드는 접근 권한이 없는 모듈을 컴파일하지 않습니다.
+
+예를들어, 메인페이지는 로그인한 경우에만 들어갑니다. 앞에서 배운 `canActivate` 를 이용해 로그인페이지로 리다이렉트할 수 있지만 로그인이 되지 않은 상태임에도 불구하고 메인페이지 모듈은 로드되었습니다.(뷰에만 접근을 불가했기 때문) 로그인 했을 경우에만 로드를 하려면 `canLoad` 가드를 사용합니다.
+
+```ts
+// foo-guard.service.ts
+...
+@Injectable()
+export class FooGuardService implements CanLoad {
+  canLoad() {
+    // ...
+  }
+}
+```
+
+```ts
+// 라우트 구성
+...
+{
+  path: 'foo',
+  loadChildren: 'path/#FooModule', // 지연로딩 라우팅 규칙 설정
+  canLoad: [ FooGuardService ] // canLoad 프로퍼티 등록
+}
+```
+
+ **[지연로딩 라우팅 규칙 설정](https://angular.kr/guide/router#%EC%A7%80%EC%97%B0%EB%A1%9C%EB%94%A9-%EB%9D%BC%EC%9A%B0%ED%8C%85-%EA%B7%9C%EC%B9%99-%EC%84%A4%EC%A0%95)** 에 따르면 지연로딩을 사용할 때 children 프로퍼티 대신 loadChildren 을 사용히여 모듈 위치를 지정합니다. 그 위치는 애플리케이션 최상위 폴더부터 시작되는 위치이고 파일경로지정 후에는 `#` 구분자를 통해 모듈이름을 지정해줍니다.
+
+### Resolve
+Resolve 가드는 라우트의 뷰가 렌더링되기 전에 뷰렌더링에 반드시 필요한 데이터를 로드할 때 사용합니다. 주의할점은 반환하는 타입이 `true`, `false` 가 아니라 뷰 렌더링에 필요한 데이터를 반환합니다.
+
+```ts
+// foo-guard.service.ts
+...
+@Injectable()
+export class FooGuardService implements Resolve {
+  resolve() {
+    // ...
+    return someData; // 데이터 반환
+  }
+}
+```
+
+### CanDeactivate
+CanDeactivate 가드는 뷰에서 빠져나갈 때(컴포넌트가 비활성화될 때) 사용합니다.
+
+```ts
+interface CanDeactivate<T> {
+  canDeactivate(component: T, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
+```
+
+예를들면 실수로 뒤로가기나 다른 링크를 눌러서 작성중인 페이지가 있다고 해보면, 해당 가드를 통해 유저에게 한번 더 물어볼 수 있습니다.
 
 ## 참고문서
 * [Angular Essentials - 이웅모](https://book.naver.com/bookdb/book_detail.nhn?bid=13761643)
