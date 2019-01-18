@@ -12,7 +12,7 @@
     * Entity: DialogFlow 가 인식하는 변수같은것, 자연어를 변수로 등록할 수 있음
       * Reference value: 기본 이름
       * Synonym: 동의어
-  * Action and parameter: 행동
+  * Action and parameter: 행동
     * required: 필수 입력값
     * prompt: 질문을 다시할 메세지
   * Response: 최종적으로 응답할
