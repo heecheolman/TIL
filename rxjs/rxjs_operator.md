@@ -1,38 +1,38 @@
 # RxJS Operator
-RxJS 에서 사용되는 Operator(연산자)들을 알아봅니다.
+RxJS 사용되는 Operator(연산자)들을 알아보려합니다. 연산자들이 너무 많아 어떤것들이 있는지 조금씩 살펴보고 싶어 정리합니다.
 
 ## 연산자 분류
 
-* Combination
+* [Combination](#combination)
 * Conditional
-* Creation
+* [Creation](#creation)
 * Error Handling
 * Multicasting
 * Transformation
 * Utility
 
+---
 
-
-## Combination
+# Combination
 combination operator(조합 연산자)는 여러개의 Observable을 결합하는 연산자이며 결합된 스트림은 값의 순서, 시간 및 구조가 변경된다는점이 특징입니다.
 
 ### 목록
 * combineAll
-* [combineLatest](#combine)
+* [combineLatest](#combinelatest)
 * [concat](#concat)
 * concatAll
 * forkJoin
-* merge
+* [merge](#merge)
 * mergeAll
 * pairwise
 * race
-* startWith
+* [startWith](#startwith)
 * withLatestFrom
 * zip
 
-#### combineAll
+## combineAll
 
-#### combineLatest
+## [combineLatest](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/combinelatest.md)
 
 결합시키는 Observable 들 중 어느것이라도 Observable 의 값이 발생하면, 마지막 값 을 넘겨줍니다.
 
@@ -56,7 +56,7 @@ const subscribe = combined$.subscribe(latestValues => {
 })
 ```
 
-#### concat
+## [concat](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/concat.md)
 
 Observable을 차례대로 구독완료하며 값을 발생시킵니다. 실행순서가 상관없다면 [merge](#merge) 를 사용합니다.
 
@@ -68,11 +68,12 @@ const sourceTwo = Rx.Observable.of(4, 5, 6); // 4, 5, 6
 const example = sourceOne.concat(sourceTwo); // 연결
 ```
 
-#### concatAll
+## concatAll
 
-#### forkJoin
+## forkJoin
 
-#### merge
+## [merge](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/merge.md)
+![이미지](http://reactivex.io/rxjs/img/merge.png)
 
 여러개의 옵저버블을 하나의 옵접버블로 바꿔줍니다.
 
@@ -83,13 +84,14 @@ const second = Rx.Observable.interval(2000); // 2초마다
 const example = Rx.Observable.merge(first.mapTo('FIRST'), second.mapTo('SECOND')); // merge 해줍니다.
 ```
 
-#### mergeAll
+## mergeAll
 
-#### pairwise
+## pairwise
 
-#### race
+## race
 
-#### startWith
+## [startWith](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/startwith.md)
+![이미지](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-startWith)
 
 첫번째 값을 주어 방출합니다.
 
@@ -100,6 +102,58 @@ const subscribe$ = example.subscribe(val => console.log(val))
 // 0, 1, 2, 3
 ```
 
-#### withLatestFrom
+## withLatestFrom
 
-#### zip
+## zip
+
+---
+
+# Conditional
+
+---
+
+# Creation
+Creation 오퍼레이터는 해당 값을 옵저버블로 만들어 반환해줍니다.
+
+### 목록
+* create
+* empty
+* [from](#from)
+* fromEvent
+* fromPromise
+* interval
+* [of](#of)
+* range
+* throw
+* timer
+
+## create
+## empty
+## [from](https://github.com/tienne/learn-rxjs/blob/master/operators/creation/from.md)
+![이미지](http://reactivex.io/rxjs/img/from.png)
+
+열거가능한(이터러블한) 데이터들을 순서대로 내보내 옵저버블로 반환합니다.
+```js
+//emit array as a sequence of values
+const arraySource = Rx.Observable.from([1,2,3,4,5]);
+//output: 1,2,3,4,5
+const subscribe = arraySource.subscribe(val => console.log(val));
+```
+
+## fromEvent
+## fromPromise
+## interval
+## [of](https://github.com/tienne/learn-rxjs/blob/master/operators/creation/of.md)
+![이미지](http://reactivex.io/rxjs/img/of.png)
+
+파라미터로 전달된 값들을 순서대로 내보냅니다.
+```js
+//emits values of any type
+const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ return 'Hello'});
+//output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
+const subscribe = source.subscribe(val => console.log(val));
+```
+
+## range
+## throw
+## timer
