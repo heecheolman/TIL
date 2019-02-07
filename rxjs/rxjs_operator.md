@@ -91,7 +91,8 @@ const example = Rx.Observable.merge(first.mapTo('FIRST'), second.mapTo('SECOND')
 ## race
 
 ## [startWith](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/startwith.md)
-![이미지](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-startWith)
+
+![이미지](http://reactivex.io/rxjs/img/startWith.png)
 
 첫번째 값을 주어 방출합니다.
 
