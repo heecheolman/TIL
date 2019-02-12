@@ -159,3 +159,7 @@ constructor(
 #### Sibling Element
 
 ViewContainerRef 를 통해 생성한 뷰는 ViewContainerRef 의 Sibling 엘리먼트로 위치합니다.
+
+## 참고문서
+
+* [제대로 배우는 Angular4 - 조주민](http://www.yes24.com/24/goods/42497045)
