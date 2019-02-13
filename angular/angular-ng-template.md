@@ -333,3 +333,7 @@ export class AppComponent {}
 
 
 템플릿 참조변수로 하는것과 다른것이 없지만 AppComponent 의 `<ng-template>` 에 디렉티브를 이용해 지정하면 보다 명시적으로 알 수 있기 때문에 선호됩니다.
+
+## 참고문서
+
+* [제대로 배우는 Angular4 - 조주민](http://www.yes24.com/24/goods/42497045)
