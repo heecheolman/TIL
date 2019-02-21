@@ -28,7 +28,7 @@ combination operator(조합 연산자)는 여러개의 Observable을 결합하�
 * race
 * [startWith](#startwith)
 * withLatestFrom
-* zip
+* [zip](#zip)
 
 ## combineAll
 
@@ -107,6 +107,24 @@ const subscribe$ = example.subscribe(val => console.log(val))
 
 ## zip
 
+모든 옵저버블의 방출값들을 array 로 만들어줍니다.
+
+```js
+const sourceOne = of('Hello');
+const sourceTwo = of('World!');
+const sourceThree = of('Goodbye');
+const sourceFour = of('World!');
+//wait until all observables have emitted a value then emit all as an array
+const example = zip(
+  sourceOne,
+  sourceTwo.pipe(delay(1000)),
+  sourceThree.pipe(delay(2000)),
+  sourceFour.pipe(delay(3000))
+);
+//output: ["Hello", "World!", "Goodbye", "World!"]
+const subscribe = example.subscribe(val => console.log(val));
+```
+
 ---
 
 # Conditional
@@ -118,6 +136,7 @@ Creation 오퍼레이터는 해당 값을 옵저버블로 만들어 반환해줍
 
 ### 목록
 * create
+* defer
 * empty
 * [from](#from)
 * fromEvent
