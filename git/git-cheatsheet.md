@@ -99,3 +99,6 @@ stage 에 올라간 파일들에 대한 변경이력을 남깁니다. 커밋 메
 
 #### git stash clear
 stash 들 모두 삭제
+
+### git merge [브랜치 이름]
+해당 브랜치와 현재 브랜치 merge
