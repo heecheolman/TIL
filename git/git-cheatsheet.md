@@ -102,3 +102,5 @@ stash 들 모두 삭제
 
 ### git merge [브랜치 이름]
 해당 브랜치와 현재 브랜치 merge
+
+#### git reset 커밋명
