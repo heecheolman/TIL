@@ -135,6 +135,20 @@ transition(':leave', [ ... ]) // * => void    ===  :leave
 * **`* => closed`**: 아무 상태에서 closed 로 갈 때
 * **`* => *`**: 아무상태에서 아무상태로 갈 때
 
+#### boolean values in transition
+
+Boolean 값으로 상태를 지정할 수 있다.
+
+```ts
+animations: [
+  trigger('openClose', [
+    state('true', style({ ... })),
+    state('false', style({ ... })),
+    transition('false <=> true', animate( ... ))
+  ])
+]
+```
+
 
 ## 참고문서
 * [앵귤러 공식문서-애니메이션](https://angular.io/guide/animations)
