@@ -151,6 +151,8 @@ animations: [
 
 ## Keyframes
 
+### offset
+
 
 ## 참고문서
 * [앵귤러 공식문서-애니메이션](https://angular.io/guide/animations)
