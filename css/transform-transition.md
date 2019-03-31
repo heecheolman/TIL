@@ -1,4 +1,4 @@
-# 변이와 변형(transition and transform)
+# 변이와 변형 (transition and transform)
 
 CSS 에서 **transition** 과 **transform** 을 잘 사용하면 동적인 웹을 만들 수 있고 사용자의 UX 도 만족시켜줄 수 있는 좋은 친구이다. 자주 쓰고 있지만 헷갈릴 수 있어 이 참에 정리 해보려 한다.
 
@@ -11,7 +11,7 @@ CSS 에서 **transition** 과 **transform** 을 잘 사용하면 동적인 웹�
 ### 프로퍼티들
 
 * [transition](#transition)
-* [transition-delay]((#transition-delay)
+* [transition-delay](#transition-delay)
 * [transition-duration](#transition-duration)
 * [transition-property](#transition-property)
 * [transition-timing-function](#transition-timing-function)
