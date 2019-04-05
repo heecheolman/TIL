@@ -9,6 +9,16 @@ flexbox 는 모던 웹페이지를 구성할 때 빼놓을 수 없는 레이아�
 * 일정한 간격조절
 * 변하는 뷰포트에 효율적으로 대처 가능
 
+## flex-container
+
+```css
+foo {
+  display: flex;
+}
+```
+
+display 프로퍼티를 flex 로 지정하면 해당 엘리먼트는 flexbox 가 된다. 
+
 
 
 ## 참고문서
