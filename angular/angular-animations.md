@@ -151,6 +151,22 @@ animations: [
 
 ## Keyframes
 
+angular 애니메이션에서 `keyframes` 를 사용하면 여러단계(multiple steps)를 갖는 애니메이션을 만들 수 있다.
+
+![이미지](https://angular.io/generated/images/guide/animations/keyframes-500.png)
+
+```ts
+transition('* => active', [
+  animate('2s', keyframes([
+    style({ ... }),
+    style({ ... }),
+    style({ ... }),
+  ]))
+])
+```
+void 상태에서 active 상태로 갈 때 해당 keyframes 를 적용시킨다.
+
+
 ### offset
 
 
