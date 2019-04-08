@@ -66,6 +66,8 @@ export class SomeComponent  {
 }
 ```
 
+커스텀 디렉티브를 만들 때 참고하면 좋을 것 같다.
+
 ## 참고문서
 
 * [Using @HostBinding and @HostListener in Custom Angular Directives - alligator.io](https://alligator.io/angular/hostbinding-hostlistener/)
