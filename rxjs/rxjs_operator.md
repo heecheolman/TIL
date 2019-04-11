@@ -107,7 +107,7 @@ const subscribe$ = example.subscribe(val => console.log(val))
 
 ## zip
 
-모든 옵저버블의 방출값들을 array 로 만들어줍니다.
+모든 옵저버블의 방출값들을 array 로 만들어줍니다. 그리고 모든 방출값들이 들어올 때 까지 기다리고 방출합니다.
 
 ```js
 const sourceOne = of('Hello');
