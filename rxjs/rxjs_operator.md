@@ -1,205 +1,32 @@
 # RxJS Operator
+
+![](http://reactivex.io/assets/Rx_Logo_S.png)
+
+[Rx](http://reactivex.io/intro.html) 는 비동기 데이터 스트림을 처리하는 API 를 제공하는 라이브러리입니다. 모던 웹에서 비동기 통신은 필수적입니다. 때문에 자바스크립트 언어의 특징을 이용해 콜백을 사용했습니다. 콜백지옥을 해결하고자 프로미스가 나오고 더 나아가서 프로미스 기반의 `async/await` 도 나왔습니다.
+
+> 만약 동기방식으로 통신을 한다면 기다림의 연속
+
+또 다른 해결법으로 등장한것이 RxJS 입니다. RxJS 는 요약하자면 이벤트 스트림과 데이터를 쉽게 만들고 다룰 수 있게 해주는 라이브러리입니다. RxJS 를 배우기 전에 [리액티브 프로그래밍의 개념을 짚고 넘어가는게 좋습니다.](https://github.com/heecheolman/TIL/blob/master/angular/angular13.md)
+
+
+RxJS 에서 이벤트 스트림과 데이터를 다루기위해 여러 연산자들을 사용하게 되는데 연산자들이 꽤 많아 하나씩 알아보려합니다. 주로 [learnrxjs](https://www.learnrxjs.io/) 를 참고합니다.
+
 RxJS 사용되는 Operator(연산자)들을 알아보려합니다. 연산자들이 너무 많아 어떤것들이 있는지 조금씩 살펴보고 싶어 정리합니다.
 
-## 연산자 분류
+> RxJS 를 배우며 함수형 프로그래밍도 배우고 싶습니다.
 
-* [Combination](#combination)
-* Conditional
+## 연산자 타입
+
+* [Combination](#)
+* [Conditional](#)
 * [Creation](#creation)
-* Error Handling
-* Multicasting
-* Transformation
-* Utility
-
----
-
-# Combination
-combination operator(조합 연산자)는 여러개의 Observable을 결합하는 연산자이며 결합된 스트림은 값의 순서, 시간 및 구조가 변경된다는점이 특징입니다.
-
-### 목록
-* combineAll
-* [combineLatest](#combinelatest)
-* [concat](#concat)
-* concatAll
-* forkJoin
-* [merge](#merge)
-* mergeAll
-* pairwise
-* race
-* [startWith](#startwith)
-* withLatestFrom
-* [zip](#zip)
-
-## combineAll
-
-## [combineLatest](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/combinelatest.md)
-
-결합시키는 Observable 들 중 어느것이라도 Observable 의 값이 발생하면, 마지막 값 을 넘겨줍니다.
-
-![이미지](https://camo.githubusercontent.com/d1ca47f1c9da43d026c31865f0e402e3f12caafb/687474703a2f2f7265616374697665782e696f2f72786a732f696d672f636f6d62696e654c61746573742e706e67)
-
-```js
-// 1초에 한번, 4초에 한번씩 값 발생
-const timerOne = Rx.Observable.timer(1000, 4000);
-// 2초에 한번, 4초에 한번씩 값 발생
-const timerTwo = Rx.Observable.timer(2000, 4000);
-
-// 묶어줍니다.
-const combined$ = Rx.Observable.combineLatest(
-  timerOne,
-  timerTwo,
-);
-
-const subscribe = combined$.subscribe(latestValues => {
-  const [timerValOne, timerValTwo] = latestValues;
-  // ... 처리
-})
-```
-
-## [concat](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/concat.md)
-
-Observable을 차례대로 구독완료하며 값을 발생시킵니다. 실행순서가 상관없다면 [merge](#merge) 를 사용합니다.
-
-![이미지](https://camo.githubusercontent.com/65ce224e5ba1cacfbc4a7ae1a62cd0991aa602ee/687474703a2f2f7265616374697665782e696f2f72786a732f696d672f636f6e6361742e706e67)
-
-```js
-const sourceOne = Rx.Observable.of(1, 2, 3); // 1, 2, 3
-const sourceTwo = Rx.Observable.of(4, 5, 6); // 4, 5, 6
-const example = sourceOne.concat(sourceTwo); // 연결
-```
-
-## concatAll
-
-## forkJoin
-
-## [merge](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/merge.md)
-![이미지](http://reactivex.io/rxjs/img/merge.png)
-
-여러개의 옵저버블을 하나의 옵접버블로 바꿔줍니다.
-
-```ts
-const first = Rx.Observable.interval(2500); // 2.5초마다
-const second = Rx.Observable.interval(2000); // 2초마다
-
-const example = Rx.Observable.merge(first.mapTo('FIRST'), second.mapTo('SECOND')); // merge 해줍니다.
-```
-
-## mergeAll
-
-## pairwise
-
-## race
-
-## [startWith](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/startwith.md)
-
-![이미지](http://reactivex.io/rxjs/img/startWith.png)
-
-첫번째 값을 주어 방출합니다.
-
-```js
-const source = Rx.Observable.of(1, 2, 3);
-const example = source.startWith(0);
-const subscribe$ = example.subscribe(val => console.log(val))
-// 0, 1, 2, 3
-```
-
-## withLatestFrom
-
-## zip
-
-모든 옵저버블의 방출값들을 array 로 만들어줍니다. 그리고 모든 방출값들이 들어올 때 까지 기다리고 방출합니다.
-
-```js
-const sourceOne = of('Hello');
-const sourceTwo = of('World!');
-const sourceThree = of('Goodbye');
-const sourceFour = of('World!');
-//wait until all observables have emitted a value then emit all as an array
-const example = zip(
-  sourceOne,
-  sourceTwo.pipe(delay(1000)),
-  sourceThree.pipe(delay(2000)),
-  sourceFour.pipe(delay(3000))
-);
-//output: ["Hello", "World!", "Goodbye", "World!"]
-const subscribe = example.subscribe(val => console.log(val));
-```
-
----
-
-# Conditional
-
----
-
-# Creation
-Creation 오퍼레이터는 해당 값을 옵저버블로 만들어 반환해줍니다.
-
-### 목록
-* create
-* defer
-* empty
-* [from](#from)
-* fromEvent
-* fromPromise
-* interval
-* [of](#of)
-* range
-* throw
-* timer
-
-## create
-## empty
-## [from](https://github.com/tienne/learn-rxjs/blob/master/operators/creation/from.md)
-![이미지](http://reactivex.io/rxjs/img/from.png)
-
-열거가능한(이터러블한) 데이터들을 순서대로 내보내 옵저버블로 반환합니다.
-```js
-//emit array as a sequence of values
-const arraySource = Rx.Observable.from([1,2,3,4,5]);
-//output: 1,2,3,4,5
-const subscribe = arraySource.subscribe(val => console.log(val));
-```
-
-## fromEvent
-## fromPromise
-## interval
-## [of](https://github.com/tienne/learn-rxjs/blob/master/operators/creation/of.md)
-![이미지](http://reactivex.io/rxjs/img/of.png)
-
-파라미터로 전달된 값들을 순서대로 내보냅니다.
-```js
-//emits values of any type
-const source = Rx.Observable.of({name: 'Brian'}, [1,2,3], function hello(){ return 'Hello'});
-//output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
-const subscribe = source.subscribe(val => console.log(val));
-```
-
-## range
-## throw
-## timer
-
-# Error Handling
-
-에러 핸들링을 사용해 에러 발생 시 에러를 정상적으로 처리해주는 연산자들
-
-* [catch](#catch)
-* [retry][#retry]
-* [retryWhen](#retryWhen)
-
-## catch
-
-옵저버블의 에러를 잡아 처리해주는 연산자입니다.
-
-```ts
-// 에러 방출
-const source = Rx.Observable.throw('This is an error!');
-// catch 로 에러 잡기, 여기서는 of 연산자로 메세지를 던
-const example = source.catch(val => Rx.Observable.of(`I caught: ${val}`));
-//output: 'I caught: This is an error'
-const subscribe = example.subscribe(val => console.log(val));
-```
+* [Error Handling](#)
+* [Multicasting](#)
+* [Transformation](#)
+* [Utility](#)
 
 
-## retry
-
-## retryWhen
+## 참고문서
+* [learnrxjs.io](https://www.learnrxjs.io/)
+* [MS 는 ReactiveX를 왜 만들었을까? - 개발왕 김코딩](https://huns.me/development/2051)
+* [[번역] 반응형 프로그래밍과 RxJS 이해하기 - DailyEngineering](https://hyunseob.github.io/2016/10/09/understanding-reactive-programming-and-rxjs/)
