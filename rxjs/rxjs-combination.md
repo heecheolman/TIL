@@ -3,21 +3,21 @@ combination operator(조합 연산자)는 여러개의 Observable을 결합하�
 
 ## 목록
 * combineAll
-* [combineLatest](#combinelatest)⭐️
-* [concat](#concat)⭐️
+* [combineLatest](#combinelatest) ⭐️
+* [concat](#concat) ⭐️
 * concatAll
 * forkJoin
-* [merge](#merge)⭐️
+* [merge](#merge) ⭐️
 * mergeAll
 * pairwise
 * race
-* [startWith](#startwith)⭐️
-* withLatestFrom⭐️
-* [zip](#zip)⭐️
+* [startWith](#startwith) ⭐️
+* withLatestFrom ⭐️
+* [zip](#zip) ⭐️
 
 ## combineAll
 
-## [combineLatest](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/combinelatest.md)⭐️
+## [combineLatest](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/combinelatest.md) ⭐️
 
 결합시키는 Observable 들 중 어느것이라도 Observable 의 값이 발생하면, 마지막 값 을 넘겨줍니다.
 
@@ -41,7 +41,7 @@ const subscribe = combined$.subscribe(latestValues => {
 })
 ```
 
-## [concat](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/concat.md)⭐️
+## [concat](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/concat.md) ⭐️
 
 Observable을 차례대로 구독완료하며 값을 발생시킵니다. 실행순서가 상관없다면 [merge](#merge) 를 사용합니다.
 
@@ -76,7 +76,7 @@ const example = Rx.Observable.merge(first.mapTo('FIRST'), second.mapTo('SECOND')
 
 ## race
 
-## [startWith](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/startwith.md)⭐️
+## [startWith](https://github.com/tienne/learn-rxjs/blob/master/operators/combination/startwith.md) ⭐️
 
 ![이미지](http://reactivex.io/rxjs/img/startWith.png)
 
@@ -89,9 +89,9 @@ const subscribe$ = example.subscribe(val => console.log(val))
 // 0, 1, 2, 3
 ```
 
-## withLatestFrom⭐️
+## withLatestFrom ⭐️
 
-## zip⭐️
+## zip ⭐️
 
 zip 안에 넣은 옵저버블들이 모두 방출될 때까지 기다렸다가 방출합니다. 다음 예제는 3초뒤에 방출합니다.
 
