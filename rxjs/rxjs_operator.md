@@ -193,7 +193,7 @@ const subscribe = source.subscribe(val => console.log(val));
 ```ts
 // 에러 방출
 const source = Rx.Observable.throw('This is an error!');
-// catch 로 에러 잡기, 여기서는 of 연산자로 메세지를 던짐
+// catch 로 에러 잡기, 여기서는 of 연산자로 메세지를 던
 const example = source.catch(val => Rx.Observable.of(`I caught: ${val}`));
 //output: 'I caught: This is an error'
 const subscribe = example.subscribe(val => console.log(val));
