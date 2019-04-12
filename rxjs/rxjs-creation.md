@@ -2,7 +2,7 @@
 Creation 오퍼레이터는 해당 값을 옵저버블로 만들어 반환해줍니다.
 
 ## 목록
-* ajax⭐️
+* ajax ⭐️
 * create
 * defer
 * empty
