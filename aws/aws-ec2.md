@@ -2,7 +2,7 @@
 
 <img src="https://miro.medium.com/max/836/1*7zbh4xoxgD8UneyVo65UOg.jpeg" style="max-width: 300px;">
 
-Amazon Elastic Compute Cloud 의 약자이다. 아마존 웹서비스에서 가장 먼저 생성되었으며 주요 서비스 중 하나다. 더 간단히, 독립된 컴퓨터 한대를 통채로 주는 서비스이다.
+Amazon Elastic Compute Cloud 의 약자이다. 아마존 웹서비스에서 가장 먼저 생성되었으며 주요 서비스 중 하나다. 더 간단히, 독립된 컴퓨터 한 대를 통채로 주는 서비스이다.
 
 > Amazon 빼고, E 그리고 C가 2개라 EC2
 
@@ -16,11 +16,11 @@ Amazon Elastic Compute Cloud 의 약자이다. 아마존 웹서비스에서 가�
 
 ## AutoScaling
 
-EC2 인스턴스에 트래픽이 갑자기 늘어날 경우가 있다. 이럴 땐 EC2 가 유연하게 리소스의 용량을 늘려 버틸 수 있게 해줘야하는데 이것을 가능하게 하는것이 AutoScaling 이다.
+EC2 인스턴스에 트래픽이 갑자기 늘어날 경우가 있다. 이럴 땐 EC2 가 유연하게 리소스의 용량을 늘려 버틸 수 있게 해줘야하는데 이것을 가능하게 하는것이 AutoScaling 이다.
 
 * EC2 인스턴스의 규모를 자동으로 확대/축소
 * 처리량의 증가에 빠르게 대응가능
-* 미리 만들어진 AMI를 이용해 인스턴스를 자동 생성
+* 미리 만들어진 AMI를 이용해 인스턴스를 자동 생성
 
 
 ### AutoScaling 타입
