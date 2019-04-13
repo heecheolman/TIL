@@ -35,13 +35,11 @@ aws 는 아마존 웹 서비스(Amazon Web Service) 의 줄임말이다. 아마�
 
 ## 알아볼 AWS 제품
 
-* EC2
-* S3
-* RDS
-* CloudFront
-* DynamoDB
-* SES
-* Lambda
+* [EC2](https://github.com/heecheolman/TIL/blob/master/aws/aws-ec2.md)
+* [S3](https://github.com/heecheolman/TIL/blob/master/aws/aws-s3.md)
+* [RDS](https://github.com/heecheolman/TIL/blob/master/aws/aws-rds.md)
+* [CloudFront](https://github.com/heecheolman/TIL/blob/master/aws/aws-cloudfront.md)
+* [Lambda](https://github.com/heecheolman/TIL/blob/master/aws/aws-lambda.md)
 
 ## 참고문서
 
