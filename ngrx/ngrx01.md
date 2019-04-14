@@ -1,6 +1,6 @@
 
 <div align=center>
-  <img src="https://ngrx.io/assets/images/badge.svg" style="max-width: 100px">
+  <img src="https://ngrx.io/assets/images/badge.svg" style="max-width: 300px">
 </div>
 
 # ngrx
@@ -308,7 +308,7 @@ export function isEqualCheck(a: any, b: any): boolean {
 
 ## 마무리
 
-아직 실사용을 많이 안해봐서 이해가 안되는부분이나 어색한 부분이 있지만 차근차근 해나가면서 이 개념들을 바탕으로 정리해나가야겠다. 
+아직 실사용을 많이 안해봐서 이해가 안되는부분이나 어색한 부분이 있지만 차근차근 해나가면서 이 개념들을 바탕으로 정리해나가야겠다.
 
 ## 참고문서
 * [Ngrx 공식문서](https://ngrx.io/guide/store/selectors)
