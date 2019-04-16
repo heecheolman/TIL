@@ -1,6 +1,6 @@
 # GraphQL
 
-<img src="https://graphql.org/img/logo.svg" style="max-width: 200px;">
+<img width="200px" src="https://graphql.org/img/logo.svg">
 
 ## 목차
 
