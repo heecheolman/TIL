@@ -25,6 +25,10 @@ RxJS 사용되는 Operator(연산자)들을 알아보려합니다. 연산자들�
 * Transformation
 * Utility
 
+## Observable
+
+## Observer
+
 
 ## 참고문서
 * [learnrxjs.io](https://www.learnrxjs.io/)
