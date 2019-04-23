@@ -83,7 +83,7 @@ display 프로퍼티를 flex 로 지정하면 해당 엘리먼트는 `flex conta
 * `justify-content: space-around;`: 주축을 기준으로 좌우로 모든 요소의 간격이 동일하게 정렬
 
 **align-items**  
-컨테이너의 교차축(cross axis) 를 기준으로 **수직 정렬** 한다. 기본값은 `stretch` 이다.
+`flex item` 들을 컨테이너의의 교차축(cross axis) 로 정렬한다. 기본값은 `stretch` 이다.
 
 * `align-items: stretch;`: `flex item` 들이 컨테이너의 높이(교차축의 시작점과 끝점)에 꽉 차게 퍼진다.
 * `align-items: flex-start;`: 교차축(cross axis) 의 시작점을 기준으로 정렬
@@ -91,11 +91,68 @@ display 프로퍼티를 flex 로 지정하면 해당 엘리먼트는 `flex conta
 * `align-items: center;`: 교차축(cross axis) 의 중앙에 정렬
 * `align-items: baseline;` 컨테이너의 baseline 을 기준으로 정렬한다.
 
-**align-content**
+**align-content**  
+컨테이너의 교차축(cross-axis) 을 기준으로 `flex item` 들을 **수직 정렬** 한다. 기본값은 `stretch`이다.
 
+* `align-content: stretch;`: 아이템들이 일정하게 정렬되어 배치
+* `align-content: flex-start;`: 교차축의 시작점을 기준으로 쌓인다.
+* `align-content: flex-end;`: 교차축의 끝점을 기준으로 쌓인다.
+* `align-content: center;`: 교차축의 중앙으로 정렬한다.
+* `align-content: space-between;`: 첫번째와 마지막 행이 교차축의 시작점과 끝점에 배치되고 나머지는 간격이 일정하게 배치
+* `align-content: space-around;`: 모든 아이템의 행이 일정한 간격을 두고 정렬
+
+해보면 `justify-content` 와 기준 축만 다를뿐 거의 똑같은 개념이다.
 
 ### flex-item
 
+다음은 `flex item` 이 갖는 속성들이다.
+
+* order
+* flex-grow
+* flex-shrink
+* flex-basis
+* flex
+* align-self
+
+
+**order**  
+개별 아이템이 정렬될 때 배치 순서를 지정해준다. 기본값은 `0` 이다.
+`order: 정수값;`
+
+> HTML 코드를 수정하지 않고도 배치 순서를 지정해줄 수 있다.
+
+**flex-grow**  
+아이템에 대해 얼마나 넓힐건지에 대한 값을 지정해준다. 기본값은 `0` 이며, 음수값은 무효하다. 모두 같은 값을 갖는다면 동일한 너비를 갖는다. 특정 요소에만 `flex-grow` 의 값을 늘려주면 해당 요소의 너비는 늘어난다.
+
+`flex-grow: 양의 정수값;`
+
+**flex-shrink**  
+아이템에 대해 얼마나 축소할지에 대한 값을 지정해준다. 기본값은 `1` 이며, 음수값은 무효하다. 0을 넣으면 원래 너비를 유지한다.
+
+`flex-shrink: 양의 정수값;`
+
+**flex-basis**  
+아이템의 너비 기본값을 `px`, `%` 등 단위로 지정할 때 사용한다. 기본값은 `auto`
+
+`flex-item: auto | [width];`
+
+**flex**  
+`flex-grow`, `flex-shrink`, `flex-basis` 속성을 한 번에 사용하는 shorthand 이며, 기본값은 `0 1 auto` 이다.
+
+> W3C 에서는 개별기술을 추천한다고 한다.
+
+`flex: none | auto | [[flex-grow] [flex-shrink] [flex-basis]];`
+
+**align-self**  
+컨테이너가 지정한 `align-items` 속성보다 우선시하여 해당 아이템을 정렬한다. 기본값은 `auto` 이다.
+
+> `align-items` 는 컨테이너의 교차축(cross axis)으로 정렬하는 속성
+
+* `align-items: flex-start;`: 동일
+* `align-items: flex-end;`: 동일
+* `align-items: center;`: 동일
+* `align-items: baseline;`: 동일
+* `align-items: stretch;`: 동일
 
 
 
@@ -103,4 +160,4 @@ display 프로퍼티를 flex 로 지정하면 해당 엘리먼트는 `flex conta
 ## 참고문서
 
 * [flexbox로 만들 수 있는 10가지 레이아웃 - NAVER-D2](https://d2.naver.com/helloworld/8540176)
-*
+* [CSS3 Flexbox Layout - Poiemaweb](https://poiemaweb.com/css3-flexbox)
