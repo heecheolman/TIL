@@ -132,8 +132,8 @@
 
 ## 목차
 ### [MVC, MVP, MVVM 패턴](https://github.com/heecheolman/TIL/blob/master/designPattern/MVC_MVP_MVVM/mvc_mvp_mvvm.md)
-### 생성 패턴 (Creational Pattern)
-* #### 추상팩토리 (Abstract Factory)
+### [생성 패턴 (Creational Pattern)](https://github.com/heecheolman/TIL/tree/master/designPattern/CreationalPattern)
+* #### [추상팩토리 (Abstract Factory)](https://github.com/heecheolman/TIL/tree/master/designPattern/CreationalPattern/AbstractFactory)
 * #### 빌더 (Builder)
 * #### 팩토리 메서드 (Factory Method)
 * #### 원형 (Prototype)
@@ -149,14 +149,14 @@
 * #### 플라이급 (Flyweight)
 * #### 프록시 (Proxy)
 
-### 행동 패턴 (Behavioral Pattern)
+### [행동 패턴 (Behavioral Pattern)](https://github.com/heecheolman/TIL/tree/master/designPattern/BehavioralPatterns)
 * #### 책임 연쇄 (Chain of Responsibility)
 * #### 명령 (Command)
 * #### 해석자 (Interpreter)
 * #### 반복자 (Iterator)
 * #### 중개자 (Mediator)
 * #### 메멘토 (Memento)
-* #### 감시자 (Observer)
+* #### [감시자 (Observer)](https://github.com/heecheolman/TIL/tree/master/designPattern/BehavioralPatterns/Observer)
 * #### 상태 (State)
 * #### 전략 (Strategy)
 * #### 템플릿 메서드 (Template Method)
