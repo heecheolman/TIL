@@ -32,6 +32,10 @@ selector::pseudo-element {
 * [`::after`](https://developer.mozilla.org/ko/docs/Web/CSS/::after): 콘텐츠 뒤에 위치하는 공간 선택
 * [`::before`](https://developer.mozilla.org/ko/docs/Web/CSS/::before): 콘텐츠의 앞에 위치하는 공간을 선택
 * [`::selection`](https://developer.mozilla.org/ko/docs/Web/CSS/::selection): 드래그한 콘텐츠를 선택 지원하지 않는 브라우저가 있어 체크해야한다. 그리고 `::` 콜론은 두 개만 지원한다고한다.
+* `:last-child`: 부모 요소 안에 있는 마지막 자식만 선택하는 선택자
+* `:first-child`: 부모 요소 안에 있는 첫번째 자식만 선택하는 선택자
+* `:first-of-type`: 같은 태그의 첫번째 요소만 선택
+* `:last-of-type`: 같은 태그의 마지막 요소만 선택
 
 
 
