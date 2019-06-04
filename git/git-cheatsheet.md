@@ -128,3 +128,12 @@ stash 들 모두 삭제
 
 #### git show [tagName]
 태그이름에 대한 태그 메세지와 커밋을 확인합니다.
+
+
+## 단축키 설정
+
+```
+checkout -> co
+cherry-pick -> cp
+graph -> g
+```
