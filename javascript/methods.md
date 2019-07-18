@@ -47,4 +47,13 @@ console.log(newArray);
 // output: undefined
 ```
 
+### every
+
+배열의 모든 요소가 전달한 콜백함수의 테스트를 모두 통과하는지 확인합니다. 만약 하나의 요소라도 통과하지못한다면 false 를 반환합니다.
+
+```
+[2, 4, 6, 8, 10].every(value => value % 2 === 0);
+// output: true
+```
+
 현재 순회하고 있는 요소의 index 를 알고 싶다면 두번째 parameter 로 받을 수 있다.
