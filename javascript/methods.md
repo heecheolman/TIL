@@ -66,3 +66,21 @@ console.log(newArray);
 [1, 3, 5, 7, 9, 10].some(value => value % 2 === 0);
 // output: true
 ```
+#### findIndex
+
+배열의 요소중 전달한 콜백함수의 테스트를 통과한 첫 번째 요소의 `index` 값을 return 합니다. 만약 찾지 못했다면 `-1` 을 return 합니다.
+
+```js
+const members = [
+  { name: 'kim', age: '20' },
+  { name: 'hee', age: '21' },
+  { name: 'cheol' age: '25' }
+];
+
+members.findIndex(member => member.name === 'hee');
+// output: 1
+members.findIndex(member => member.name === 'kimheecheol');
+// output: -1
+```
+
+
