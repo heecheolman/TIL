@@ -37,9 +37,10 @@
 * Accessibility
   * 접근성
 * Best Practices
-  * 모범 사례 점수 ?
-* SEO
-  * 서버사이드렌더링(SSR) 이 제대로 이루어지는가?
+  * 모범 사례 점수?
+* SEO(Search Engine Optimization)
+  * 검색엔진 최적화가 잘되어있는지에 대한 측정
+
 
 
 위의 도구를 이용해서 어느정도 측정을 할 수 있다.
