@@ -7,12 +7,12 @@ NestJS 는 Node.js 를 이용한 서버 프레임워크이다. Node.js 기반 �
 
 컨트롤러는 클라이언트의 요청을 받아 응답해주는 핸들러이다. 실질적인 처리 로직은 서비스에서 담당한다.
 
-[](https://docs.nestjs.com/assets/Controllers_1.png)
+![](https://docs.nestjs.com/assets/Controllers_1.png)
 
 ### Routing
 
 데코레이터 `@Controller()` 를 이용해 생성한다. 데코레이터 안에 라우팅 경로가 될 값을 넣어주면 된다.
-```
+```ts
     @Controller()
     export class SomeController {
     	/* 컨트롤러들 */
@@ -34,7 +34,7 @@ Express 에서는 `users` 의 하위 경로들을 작성하려 하면 동일한 
 
 HTTP 요청 객체를 얻고싶으면 `@Req` 데코레이터를 통해 접근할 수 있다.
 
-```
+```ts
     @Controller()
     export class SomeController {
     	@Get()
@@ -59,7 +59,7 @@ HTTP 요청 객체를 얻고싶으면 `@Req` 데코레이터를 통해 접근할
 
 패턴 기반 경로를 지원한다. 패턴은 정규표현식을 따른다.
 
-```
+```ts
     // use1s
     // use2s
     // users
@@ -74,7 +74,7 @@ HTTP 요청 객체를 얻고싶으면 `@Req` 데코레이터를 통해 접근할
 
 파라미터를 얻고 싶다면 `@Param()` 데코레이터를 이용한다.
 
-```
+```ts
     @Get(':id')
     getUser(@Param() params) {
     	//	params.id	
