@@ -15,73 +15,75 @@ state 와 state 변경사항을 상위 컨테이너 컴포넌트에 정의하고
 
 state 를 상위 컴포넌트가 아닌 하위 컴포넌트 자체가 가지고 있다면, 하위 컴포넌트 자체의 state변경 사항들에 대해서만 re-render가 일어납니다.
 
-    /** ContainerComponent */
-    class MainPage extends React.Component<any, any> {
-    
-    	email: string = '';
-    	password: string = '';
-    
-    	render() {
-    		return (
-    			<div>
-    				<h1>MainPage</h1>
-    				<div>
-    					<Input
-    						type={'email'}
-    						placeholder={'이메일'}
-    						onChange={this.handleChangeEmail}
-    					/>
-    				</div>
-    				<div>
-    					<Input
-    						type={'password'}
-    						placeholder={'비밀번호'}
-    						onChange={this.handleChangePassword}
-    					/>
-    				</div>
-    			</div>
-    		);
-    	}
-    
-    	/** props로 넘긴 함수의 callback 함수를 통해 멤버변수 업데이트 */
-    	handleChangeEmail = (value: string) => {
-    		this.email = value;
-    	};
-    
-    	handleChangePassword = (value: string) => {
-    		this.password = value;
-    	}
+```tsx
+/** ContainerComponent */
+class MainPage extends React.Component<any, any> {
+
+    email: string = '';
+    password: string = '';
+
+    render() {
+        return (
+            <div>
+                <h1>MainPage</h1>
+                <div>
+                    <Input
+                        type={'email'}
+                        placeholder={'이메일'}
+                        onChange={this.handleChangeEmail}
+                    />
+                </div>
+                <div>
+                    <Input
+                        type={'password'}
+                        placeholder={'비밀번호'}
+                        onChange={this.handleChangePassword}
+                    />
+                </div>
+            </div>
+        );
     }
 
-    /** Input 컴포넌트 */
-    class Input extends React.Component<any , any> {
-    	/** 컴포넌트 내부에 state 설정 */
-    	state = {
-    		value: '',
-    	};
-    
-    	render() {
-    		const { value } = this.state;
-    		console.log(this.props.placeholder,  'render');
-    		return (
-    			<input
-    				type={this.props.type}
-    				placeholder={this.props.placeholder}
-    				value={value}
-    				onChange={this.handleChange}
-    			/>
-    		);
-    	}
-    
-    	handleChange = (event: any) => {
-    		this.setState({
-    			value: event.target.value,
-    		}, () => {
-    			/** state 변경 후 callback */
-    			this.props.onChange(this.state.value);
-    		});
-    	};
+    /** props로 넘긴 함수의 callback 함수를 통해 멤버변수 업데이트 */
+    handleChangeEmail = (value: string) => {
+        this.email = value;
+    };
+
+    handleChangePassword = (value: string) => {
+        this.password = value;
     }
+}
+
+/** Input 컴포넌트 */
+class Input extends React.Component<any , any> {
+    /** 컴포넌트 내부에 state 설정 */
+    state = {
+        value: '',
+    };
+
+    render() {
+        const { value } = this.state;
+        console.log(this.props.placeholder,  'render');
+        return (
+            <input
+                type={this.props.type}
+                placeholder={this.props.placeholder}
+                value={value}
+                onChange={this.handleChange}
+            />
+        );
+    }
+
+    handleChange = (event: any) => {
+        this.setState({
+            value: event.target.value,
+        }, () => {
+            /** state 변경 후 callback */
+            this.props.onChange(this.state.value);
+        });
+    };
+}
+```
 
 **초기화**
 
@@ -89,56 +91,58 @@ state 를 상위 컴포넌트가 아닌 하위 컴포넌트 자체가 가지고 
 
 > [https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)
 
-    class MainPage extends React.Component<any, any> {
-    	state = {
-    		reset: 0,
-    	};
-    	email: string = '';
-    	password: string = '';
-    
-    	render() {
-    		const { reset }  = this.state;
-    		return (
-    			<div>
-    				<h1>MainPage</h1>
-    				<div>
-    					<Input
-    						type={'email'}
-    						key={reset + 'email'}
-    						placeholder={'이메일'}
-    						onChange={this.handleChangeEmail}
-    					/>
-    				</div>
-    				<div>
-    					<Input
-    						type={'password'}
-    						key={reset + 'password'}
-    						placeholder={'비밀번호'}
-    						onChange={this.handleChangePassword}
-    					/>
-    				</div>
-    				<div>
-    					<button onClick={this.handleReset}>초기화</button>
-    				</div>
-    			</div>
-    		);
-    	}
-    
-    	handleReset = () => {
-    		this.setState({
-    			reset: this.state.reset + 1,
-    		});
-    	};
-    
-    	handleChangeEmail = (value: string) => {
-    		this.email = value;
-    	};
-    
-    	handleChangePassword = (value: string) => {
-    		this.password = value;
-    	}
-    
+```tsx
+class MainPage extends React.Component<any, any> {
+    state = {
+        reset: 0,
+    };
+    email: string = '';
+    password: string = '';
+
+    render() {
+        const { reset }  = this.state;
+        return (
+            <div>
+                <h1>MainPage</h1>
+                <div>
+                    <Input
+                        type={'email'}
+                        key={reset + 'email'}
+                        placeholder={'이메일'}
+                        onChange={this.handleChangeEmail}
+                    />
+                </div>
+                <div>
+                    <Input
+                        type={'password'}
+                        key={reset + 'password'}
+                        placeholder={'비밀번호'}
+                        onChange={this.handleChangePassword}
+                    />
+                </div>
+                <div>
+                    <button onClick={this.handleReset}>초기화</button>
+                </div>
+            </div>
+        );
     }
+
+    handleReset = () => {
+        this.setState({
+            reset: this.state.reset + 1,
+        });
+    };
+
+    handleChangeEmail = (value: string) => {
+        this.email = value;
+    };
+
+    handleChangePassword = (value: string) => {
+        this.password = value;
+    }
+
+}
+```
 
 `초기화` 버튼을  누르면 `Input` 컴포넌트에  등록된 key 가 변경되어  컴포넌트가  파괴되고, 다시 생성되어 초기화와 동일한 효과를 낼 수 있습니다.
 
@@ -152,10 +156,12 @@ Pure Component 는 React Component 와 다르게 props 나 state 의 값을 얕�
 
 **실수1: 인라인 함수**
 
-    <Input 
-    	... 생략
-    	onChange={(event) => this.setState({ value: event.target.value })}
-    />
+```tsx
+<Input 
+    ... 생략
+    onChange={(event) => this.setState({ value: event.target.value })}
+/>
+```
 
 인라인함수가 아닌, 인스턴스 함수를 통해 매번 렌더링 되는 것을 막을 수 있습니다.
 
@@ -167,11 +173,15 @@ Dialog 또는 Modal 컴포넌트는 DOM 트리구조상에서 root와 동일한 
 
 먼저, index.html에서  `<div id="root"></div>` 와 동일레벨로  다른 `div` 를 만들어 id 를 등록해줍니다.
 
-    <div id="root"></div>
-    <div id="dialog"></div>
+
+```html
+<div id="root"></div>
+<div id="dialog"></div>
+```
 
 Dialog 컴포넌트의 render 함수는 이렇게 됩니다.
 
+```tsx
     // DialogComponent
     // ...
     render() {
@@ -180,6 +190,7 @@ Dialog 컴포넌트의 render 함수는 이렇게 됩니다.
     		document.getElementById('dialog'),
     	);
     }
+```
 
 두번째 인자로 dialog  를 id 로 갖는 DOM 을 넣어줬습니다.
 
@@ -187,41 +198,46 @@ Dialog 컴포넌트의 render 함수는 이렇게 됩니다.
 
 컴포넌트 합성은 props 를 통해 상위 컴포넌트에서 전달한 것들을 렌더링할 수 있습니다. 
 
-    /** Parent */
-    <Dialog>
-    	<p>dialog</p>
-    </Dialog>
-    
-    /** Child(Dialog) */
-    render() {
-      const { children } = this.props;
-    	return (
-    		<div>
-    			{children}
-    		</div>
-    	)
-    }
+```tsx
+/** Parent */
+<Dialog>
+    <p>dialog</p>
+</Dialog>
+
+/** Child(Dialog) */
+render() {
+    const { children } = this.props;
+    return (
+        <div>
+            {children}
+        </div>
+    )
+}
+```
 
 위의 방식으로 렌더링하면 `{children}` 자리에 상위 컴포넌트에서 전달한 `<p>dialog</p>`  가 위치하게 됩니다. 굳이 children 이 아니더라도, 다른 props key 를 통해 전달할 수 있습니다
 
-    /** Parent */
-    <Dialog
-    	header={someHeader}
-    	body={someBody}
-    	footer={someFooter}
-    />
-    
-    /** Child(Dialog) */
-    render() {
-      const { header, body, footer } = this.props;
-    	return (
-    		<div>
-    			{header}
-    			{body}
-    			{footer}
-    		</div>
-    	)
-    }
+
+```tsx
+/** Parent */
+<Dialog
+    header={someHeader}
+    body={someBody}
+    footer={someFooter}
+/>
+
+/** Child(Dialog) */
+render() {
+    const { header, body, footer } = this.props;
+    return (
+        <div>
+            {header}
+            {body}
+            {footer}
+        </div>
+    )
+}
+```
 
 Angular 에서의  `<ng-content>` 나 Vue 의 `slot` 과 동일한 개념인 것 같습니다.
 
@@ -233,17 +249,20 @@ Angular 에서의  `<ng-content>` 나 Vue 의 `slot` 과 동일한 개념인 것
 
 이렇게 일반 컴포넌트를 특수한 목적에 맞게 대응하는 컴포넌트로 만드는 것을 특수화 라고 합니다.
 
-    class SomeDialog extends React.PureCompoennts {
-    	render() {
-    		return (
-    			<Dialog 
-    				header={someHeader}
-    				body={someBody}
-    				footer={someFooter}
-    			/>
-    		)
-    	}
+
+```tsx
+class SomeDialog extends React.PureCompoennts {
+    render() {
+        return (
+            <Dialog 
+                header={someHeader}
+                body={someBody}
+                footer={someFooter}
+            />
+        )
     }
+}
+```
     
     /** 상위 컴포넌트 */
     render() {
@@ -259,8 +278,9 @@ Angular 에서의  `<ng-content>` 나 Vue 의 `slot` 과 동일한 개념인 것
 ### useState
 
 class 컴포넌트에서 사용했던 state 를 함수형 컴포넌트에서는 `useState()` 를 이용해 state를 생성합니다.
-
-    const [state, setState] = useState(initialState);
+```tsx
+const [state, setState] = useState(initialState);
+```
 
 state 를 이용해 값을 접근할 수 있고 setState 를 이용해 값을 설정할 수 있습니다. state에 대해 초기 값을 전달해 주고 싶다면 `useState` 에 값을 넘겨주면 초기값이 설정됩니다.
 
@@ -270,63 +290,73 @@ PureComponent 의 함수형 버전입니다. 입력받은 state 나 props 를 �
 
 > [https://ko.reactjs.org/docs/react-api.html#reactmemo](https://ko.reactjs.org/docs/react-api.html#reactmemo)
 
-    function SomeComponent(({ someValue }) => {
-    	return <div>someComponent {someValue}</div>
-    })
-    
-    export default React.memo(SomeComponent);
+```tsx
+function SomeComponent(({ someValue }) => {
+    return <div>someComponent {someValue}</div>
+})
+
+export default React.memo(SomeComponent);
+```
 
 ### useCallback
 
 함수형 컴포넌트는 본문 자체가 render 함수라 어디서 이벤트 핸들러를 만들던간 새로운 함수를 만듭니다. `useCallback` 함수는 이 이벤트 핸들러 함수를 메모해 두었다가, 콜백함수가 사용되는 값들이 변경됐을 때만 변경해줍니다. `useCallback` 을 이용해 불필요한 render를 막아 성능을 최적화 할 수 있습니다.
 
-    const memoizedCallback = useCallback(
-      () => {
-        doSomething(a, b);
-      },
-      [a, b], // callback 함수 내에 의존되는 값들
-    );
+```tsx
+const memoizedCallback = useCallback(
+    () => {
+    doSomething(a, b);
+    },
+    [a, b], // callback 함수 내에 의존되는 값들
+);
+```
 
 ### useMemo
 
 컴포넌트 컴포지션의 경우에 props 로 ReactNode 를 넘겨주는데 이 때 항상 새로운 ReactNode 를 넘겨주기 때문에  렌더링이 계속 발생해 불필요한 작업이 수행될 수 있습니다. `useMemo` 를 이용해  불필요한 렌더링을 막아줍니다.
 
-    const emailAccessory = useMemo(() => {
-    	return email !== '' && <button>X</button>
-    }, [email]);
+```tsx
+const emailAccessory = useMemo(() => {
+    return email !== '' && <button>X</button>
+}, [email]);
+```
 
 ### useEffect
 
 렌더링 이후에 실행되는 콜백입니다. `ComponentDidMount` 와 `ComponentDidUpdate` 를 합친 시점이라고 생각하면 됩니다. 만약 `useRef` 로 Input Element 를 autoFocus 하는 코드를 보면 다음과 같습니다.
 
-    // 생략
-    
-    const renderCount = useRef<number>(0);
-    const inputElement = useRef<HTMLInputElement>(null);
-    
-    useEffect(() => {
-    /** 컴포넌트 렌더링 이후에 autoFocus 값이 true 라면 focusing */
-    	if (autoFocus && inputElement.current) {
-    		/** 타입스크립트 null 체크 */
-    		inputElement.current.focus();
-    	}
-    }, [autoFocus]);
+```tsx
+// 생략
+
+const renderCount = useRef<number>(0);
+const inputElement = useRef<HTMLInputElement>(null);
+
+useEffect(() => {
+/** 컴포넌트 렌더링 이후에 autoFocus 값이 true 라면 focusing */
+    if (autoFocus && inputElement.current) {
+        /** 타입스크립트 null 체크 */
+        inputElement.current.focus();
+    }
+}, [autoFocus]);
+```
 
 **ComponentWillUnmount**
 
 `ComponentWillUnmount`  는 컴포넌트가 파괴될 때 실행되는 훅입니다. useEffect 의 return 콜백으로 지정한 함수는 컴포넌트가 Unmount 되면서 실행됩니다. 리액트는 이러한 작업을 ***CleanUp*** 이라고 부릅니다.
 
-    // 생략
-    useEffect(() => {
-    /** 컴포넌트 렌더링 이후에 autoFocus 값이 true 라면 focusing */
-    	if (autoFocus && inputElement.current) {
-    		/** 타입스크립트 null 체크 */
-    		inputElement.current.focus();
-    	}
-    	return () => {
-    		console.log('Unmount');
-    	}
-    }, [autoFocus]);
+```tsx
+// 생략
+useEffect(() => {
+/** 컴포넌트 렌더링 이후에 autoFocus 값이 true 라면 focusing */
+    if (autoFocus && inputElement.current) {
+        /** 타입스크립트 null 체크 */
+        inputElement.current.focus();
+    }
+    return () => {
+        console.log('Unmount');
+    }
+}, [autoFocus]);
+```
 
 **React Lifecycle 참고**
 
@@ -336,35 +366,39 @@ PureComponent 의 함수형 버전입니다. 입력받은 state 나 props 를 �
 
 중복되는 로직을 묶고, 재사용 가능하게 만들 수 있게 Hook 을 구현할 수 있습니다. 
 
-    /* useInputState.ts */
-    
-    import { ChangeEvent, Dispatch, SetStateAction, useCallback, useState } from 'react';
-    
-    function useInputState(defaultState: string | (() => string)): [
-    	string,
-    	Dispatch<SetStateAction<string>>,
-    	(event: ChangeEvent<HTMLInputElement>) => any,
-    ] {
-    	const [state, setState] = useState(defaultState);
-    	const handleChangeState = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    		setState(event.target.value);
-    	}, []);
-    
-    	return [
-    		state,
-    		setState,
-    		handleChangeState,
-    	];
-    }
-    
-    export default useInputState;
+```tsx
+/* useInputState.ts */
+
+import { ChangeEvent, Dispatch, SetStateAction, useCallback, useState } from 'react';
+
+function useInputState(defaultState: string | (() => string)): [
+    string,
+    Dispatch<SetStateAction<string>>,
+    (event: ChangeEvent<HTMLInputElement>) => any,
+] {
+    const [state, setState] = useState(defaultState);
+    const handleChangeState = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        setState(event.target.value);
+    }, []);
+
+    return [
+        state,
+        setState,
+        handleChangeState,
+    ];
+}
+
+export default useInputState;
+```
 
 이 customHook 을 import 해서 사용합니다.
 
-    // 생략
-    
-    const [email, setEmail, handleChangeEmail] = useInputState('');
-    const [password, setPassword, handleChangePassword] = useInputState('');
+```tsx
+// 생략
+
+const [email, setEmail, handleChangeEmail] = useInputState('');
+const [password, setPassword, handleChangePassword] = useInputState('');
+```
 
 ## 마무리
 
