@@ -182,14 +182,14 @@ Dialog 또는 Modal 컴포넌트는 DOM 트리구조상에서 root와 동일한 
 Dialog 컴포넌트의 render 함수는 이렇게 됩니다.
 
 ```tsx
-    // DialogComponent
-    // ...
-    render() {
-    	return React.createPortal(
-    		<div>Dialog Component</div>,
-    		document.getElementById('dialog'),
-    	);
-    }
+// DialogComponent
+// ...
+render() {
+    return React.createPortal(
+        <div>Dialog Component</div>,
+        document.getElementById('dialog'),
+    );
+}
 ```
 
 두번째 인자로 dialog  를 id 로 갖는 DOM 을 넣어줬습니다.
@@ -264,12 +264,14 @@ class SomeDialog extends React.PureCompoennts {
 }
 ```
     
-    /** 상위 컴포넌트 */
-    render() {
-    	return (
-    		<SomeDialog />
-    	)
-    }
+```tsx
+/** 상위 컴포넌트 */
+render() {
+    return (
+        <SomeDialog />
+    )
+}
+```
 
 ## Functional Component
 
